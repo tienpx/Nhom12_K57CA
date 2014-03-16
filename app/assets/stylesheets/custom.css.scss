@@ -1,0 +1,102 @@
+@import "bootstrap";
+
+/*universal*/
+
+html {
+font-size: 62.5%;
+}
+
+html {
+font-family: sans-serif;
+}
+
+html {
+	overflow-y: scoll;
+}
+
+body {
+  padding-buttom: 0px;
+	padding-top: 50px;
+}
+
+body {
+	background: #fff;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  padding : 0px;
+  margin-bottom: 5px;
+}
+
+.jumbotron p {
+margin-bottom: 45px;
+font-size: 21px;
+font-weight: 200;
+}
+
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* footer */
+
+footer {
+  margin-top: 0px;
+  padding-top: 5px;
+  border-top: 0px solid #eaeaea;
+  color: #fff;
+}
+
+footer a {
+  color: black;
+}
+
+footer a:hover {
+  color: black;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 10px;
+}
+
+
+
+

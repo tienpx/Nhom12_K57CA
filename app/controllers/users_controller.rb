@@ -10,10 +10,9 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
     if @user.save
       flash[:notice] = "You have signed up successfully."
-      flash[:notice] = "Welcome user name"
-     # flash[:notice] = "Let start to create the mind map world"
       #redirect_to users_path
     else
+
       render :new
     end
   end
@@ -23,6 +22,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end

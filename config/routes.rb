@@ -2,6 +2,9 @@ NHOM12K57ca::Application.routes.draw do
 
   root "users#index"
   resources :users
+  get "/signin", to: "sessions#new"
+
+  post "/signin", to: "sessions#create"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -46,7 +46,6 @@ font-size: 21px;
 font-weight: 200;
 }
 
-
 /* header */
 
 #logo {
@@ -60,7 +59,7 @@ font-weight: 200;
   font-weight: bold;
   line-height: 1;
 }
-
+emc 
 #logo:hover {
   color: #fff;
   text-decoration: none;
@@ -97,6 +96,11 @@ footer ul li {
   margin-left: 10px;
 }
 
+#submit {
+  background: url(/assets/start.png) no-repeat;
+  width: 15px; 
+  height: 10px;
+}
 
 
 

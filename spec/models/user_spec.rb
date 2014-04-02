@@ -7,7 +7,6 @@ describe User do
       u.save
       expect(u).to_not be_valid
 
-
       u.password = "password"
       u.password_confirmation = ""
       u.save

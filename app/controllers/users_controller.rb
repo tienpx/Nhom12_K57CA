@@ -9,8 +9,6 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
     if @user.save
-      #<center>flash[:notice] = "You have signed up successfully."</center>
-      #redirect_to root_path
     else
       flash[:notice] = "Please fill in all the boxes"
       render :new

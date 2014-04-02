@@ -9,7 +9,7 @@ feature 'Signing up' do
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
     click_button "Sign up"
-    expect(page).to have_content("You have signed up successfully.")
+    expect(page).to have_content("You have signed up successfully Let start and enjoy yourself")
   end
 
 end

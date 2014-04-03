@@ -12,7 +12,6 @@ class UsersController < ApplicationController
       #flash[:notice] = "You have signed up successfully."
       #redirect_to root_path
     else
-      flash[:notice] = "Please fill in all the boxes"
       render :new
     end
   end

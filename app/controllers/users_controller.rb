@@ -10,12 +10,12 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
     if @user.save
     else
-      flash[:notice] = "Please fill in all the boxes"
       render :new
     end
   end
 
   def show
+    @user = User.new(user_params)
   end
 
   private

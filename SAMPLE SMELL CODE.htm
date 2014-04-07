@@ -14,6 +14,13 @@ def delete_from_site(data)
   url = build_url(data)
   response = RestClient.delete(url)
 end
+
+=>Refactor: You can easily solve this lump of code by introducing some meta-programming:
+def  response_from_site(data, method = :get)
+  url = build_url(data)
+  response = RestClient.public_send(method, url)
+end
+
 2. Long method
 input = "english"
 case input
@@ -26,15 +33,32 @@ when "dutch"
 else
   puts "Dunno"
 end
+
+=>Refactor: Since it seems like you’re white listing, one way to solve it would be to use a hash with input:result.
+whitelist = {
+  "english" => "English, ***, do you speak it?",
+  "french" => "Baguette!",
+  "dutch" => "I only smoke *** when it's free.",
+  "other" => "Dunno."
+}
+
+if whitelist.has_key?(input)
+  puts whitelist[input]
+else
+  puts whitelist[other]
+end
+
 3. Long parameter list
 Function( int var_1 , int var_2 , int[] var _3 , char var_4, double var_5)
+
 4. Uncommunicative name
 Var x, y, z
-5. Calling eval on user input or unchecked code
-input = "'rm -rf /'"
-klass =  eval input
-6. Nested blocks without added value
+
+=>Refactor: Use meaningful names, such as apple, banana when you mention some kind of fruit.
+
+5. Nested blocks without added value
 array = [["banana", "apple"],["pineapple","beer"]]
+
 # And I want to call reverse on each element, I could do
 array.collect { |sub_array| sub_array.collect { |subsub_array| subsub_array.reverse }}
 # But this is much nicer

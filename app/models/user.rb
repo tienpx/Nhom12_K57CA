@@ -4,6 +4,6 @@ class User < ActiveRecord::Base
 	#validates_presence_of :name, :messages => "Fill it"
 	validates :email, presence: true
     validates :password, presence: true
-	validates :password_confirmation, presence: true
+	#validates :password_confirmation, presence: true
 	#validates_presence_of :password, :messages => "Fill it"
 end

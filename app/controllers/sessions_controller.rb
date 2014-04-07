@@ -4,11 +4,9 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-    user = User.where(:name => params[:signin][:name]).first
-    if user && user.authenticate(params[:signin][:password])
-      session[:user_id] = user.id
-      #flash[:notice] = "Signed in successfully."
-      #redirect_to root_url
+    @user = User.where(:name => params[:signin][:name]).first
+    if @user && @user.authenticate(params[:signin][:password])
+      session[:@user_id] = @user.id
     else
       flash[:error] = "Sorry."
       render :new

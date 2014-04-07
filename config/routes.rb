@@ -2,8 +2,9 @@ NHOM12K57ca::Application.routes.draw do
 
   root "users#index"
   resources :users
-  get "/signin", to: "sessions#new"
+  #get "/users/:id/edit", "users#edit"
 
+  get "/signin", to: "sessions#new"
   post "/signin", to: "sessions#create"
 
   #post "/"

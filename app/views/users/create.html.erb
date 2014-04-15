@@ -2,27 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-
-    <style type="text/css">
-        body{
-            background-image: url(/assets/bg4.jpg);
-        }
-
-        h2 {
-        	
-        	text-align: center;
-        	color: black;
-        }
-        input#submit {
-        	background: url(/assets/start.png) no-repeat;
-        	width: 	100px;
-        	height: 100px;
-        	border: none;
-        	text-indent: -99999999999999px;
-        }
-        
-    </style>
-
     <title>Let go!</title>
 
     <!-- Bootstrap core CSS -->
@@ -30,24 +9,20 @@
 
     <!-- Custom styles for this template -->
     <link href="jumbotron.css" rel="stylesheet">
-
   </head>
 
-  <body>
-      <%= render "header2" %>
- 
-      <div class="container">
-        
-        <br/>  <br/>  <br/>  <br/>  <br/>  <br/>  <br/>  
+  <body id = "create">
+    <%= render "header2" %>
 
-        <h2>You have signed up successfully</h2>
-        <h2>Let start and enjoy yourself</h2>
-        </br>
+    <div class="container">
+      
+      <br/>  <br/>  <br/>  <br/>  <br/>  <br/>  <br/>  
 
-       <center> <input type="submit" value="Start" id="submit"/></center>
+      <center><h2>You have signed up successfully</h2></center>
+      <center><h2>Let start and enjoy yourself</h2></center>
+      </br>
 
-      </div>
-    
+      <center> <input type="submit" value="Start" id="submit"/></center>
+    </div>
   </body>
-
- </html>
+</html>

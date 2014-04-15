@@ -1,33 +1,13 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
-* {
-	padding: 0px;
-	margin: 0px ;
-	font-family: Arial, Helvetica, Sans-serif;
+body#create {
+    background-image: url(/assets/bg4.jpg);
 }
 
-div#wrapper {
-	width: 800px;
+input#submit {
+	background: url(/assets/start.png) no-repeat;
+	width: 	100px;
+	height: 100px;
+	border: none;
+	text-indent: -99999999999999px;
 }
-
-div#wrapper div#sidebar {
-    background: green;
-	pading: 10px;
-	float: left;
-	width: 200px;
-}
-
-div#wrapper div#sidebar ul{	
- 	list-style: none;
-}
-
-div#wrapper div#sidebar ul li{
-	padding: none
-}
-
-div#wrapper div#content {
-  margin: 0px auto;
-	
-}
+ 

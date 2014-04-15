@@ -1,3 +1,4 @@
+
 Then(/^I should see a (\b.+\b) field$/) do |field|
   page.should have_content(field)
 end
@@ -33,3 +34,4 @@ end
 Then(/^I should see "(.+)"$/) do |content|
   page.should have_content(content)
 end
+

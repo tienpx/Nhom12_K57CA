@@ -1,0 +1,78 @@
+                                            SAMPLE SMELL CODE
+1.Duplicate code
+def post_to_site(data)
+  url = build_url(data)
+  response = RestClient.post(url)
+end
+
+def get_from_site(data)
+  url = build_url(data)
+  response = RestClient.get(url)
+end
+
+def delete_from_site(data)
+  url = build_url(data)
+  response = RestClient.delete(url)
+end
+
+Refactor: You can easily solve this lump of code by introducing some meta-programming:
+def  response_from_site(data, method = :get)
+  url = build_url(data)
+  response = RestClient.public_send(method, url)
+end
+
+2. Long method
+input = "english"
+case input
+when "english"
+  puts "English, ***, do you speak it?"
+when "french"
+  puts "Baguette!"
+when "dutch"
+  puts "I only smoke *** when it's free."
+else
+  puts "Dunno"
+end
+
+Refactor: Since it seems like you’re white listing, one way to solve it would be to use a hash with input:result.
+whitelist = {
+  "english" => "English, ***, do you speak it?",
+  "french" => "Baguette!",
+  "dutch" => "I only smoke *** when it's free.",
+  "other" => "Dunno."
+}
+
+if whitelist.has_key?(input)
+  puts whitelist[input]
+else
+  puts whitelist[other]
+end
+
+3. Long parameter list
+Function( int var_1 , int var_2 , int[] var _3 , char var_4, double var_5)
+
+Refactor:
+ if data can be req'd from an available object Replace Parameter with Method
+ if lots of params came (or could come) from same object Preserve Whole Object or Introduce Parameter Object
+otherwise make clearer with Introduce Named Parameter
+
+4. Uncommunicative name
+Var x, y, z
+Refactor: Rename with communicative name, such as use var apple, banana when mention some kind of fruit.
+
+5. Nested blocks without added value
+array = [["banana", "apple"],["pineapple","beer"]]
+# And I want to call reverse on each element, I could do
+array.collect { |sub_array| sub_array.collect { |subsub_array| subsub_array.reverse }}
+
+Refactor: This is much nicer
+array.collect { |sa| sa.collect(&:reverse) }
+# => [["ananab", "elppa"],["elppaenip","reeb"]]
+
+
+
+
+
+
+
+

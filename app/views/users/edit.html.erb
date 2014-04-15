@@ -1,4 +1,4 @@
-<h1>Sign Up</h1>
+<h1>Setting</h1>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,11 +16,26 @@
 
     <!-- Custom styles for this template -->
     <link href="jumbotron.css" rel="stylesheet">
-   </head>
+  </head>
 
-	<body>
-		<%= render "header" %>
-		<%= render "form" %>
+  <body>
+    <%= render "header2" %>
+
+    <%= form_for @user do |f| %>
+      <p>
+        <%= f.label :name, "Username" %><br>
+        <%= f.text_field :name %>
+      </p>
+      <p>
+        <%= f.label :email %><br>
+        <%= f.text_field :email %>
+      </p>
+      <p>
+        <%= f.label :password, "New password" %><br>
+        <%= f.text_field :password %>
+      </p>
+       <%= f.submit "Update" %>
+    <% end %>
   </body>
 </html>
 

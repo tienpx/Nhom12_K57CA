@@ -16,16 +16,10 @@
 
     <!-- Custom styles for this template -->
     <link href="jumbotron.css" rel="stylesheet">
+  </head>
 
-
-
-   </head>
-
-	<body>
-
-		<%= render "header2" %>
-
-
+  <body>
+    <%= render "header2" %>
 
     <%= form_for @user do |f| %>
       <p>
@@ -41,7 +35,6 @@
         <%= f.text_field :password %>
       </p>
        <%= f.submit "Update" %>
-          
     <% end %>
   </body>
 </html>

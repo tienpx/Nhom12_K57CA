@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:signin][:password])
       session[:@user_id] = @user.id
     else
-      flash[:error] = "Your account haven't yet been registered. Please Singing up first!"
+      flash[:error] = "Your account haven't been registered yet. Please Singing up first!"
       render :new
     end
   end

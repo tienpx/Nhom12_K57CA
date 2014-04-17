@@ -1,4 +1,4 @@
-<h1>Setting</h1>
+<center><h1>Setting</h1></center>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,24 +18,43 @@
     <link href="jumbotron.css" rel="stylesheet">
   </head>
 
-  <body>
-    <%= render "header2" %>
+	<body>
+		<%= render "header2" %>
 
-    <%= form_for @user do |f| %>
-      <p>
-        <%= f.label :name, "Username" %><br>
-        <%= f.text_field :name %>
-      </p>
-      <p>
-        <%= f.label :email %><br>
-        <%= f.text_field :email %>
-      </p>
-      <p>
-        <%= f.label :password, "New password" %><br>
-        <%= f.text_field :password %>
-      </p>
-       <%= f.submit "Update" %>
+    <%= form_for @user, :html => {:class => "form-horizontal center"} do |f| %>
+      <div class="form-group">
+        <p>
+         <center> <%= f.label :name, "Username", class: "col-md-4 control-label" %></center>
+
+          <div class="col-md-4">
+            <%= f.text_field :name, placeholder: "Change your name", class: "form-control" %>
+          </div>
+        </p>
+      </div>
+
+      <div class="form-group">
+        <p>
+          <center><%= f.label :email, "Email", class: "col-md-4 control-label" %></center>
+
+          <div class="col-md-4">
+            <%= f.text_field :email, placeholder: "Change your email",class: "form-control" %>
+          </div> 
+        </p>
+      </div>
+      
+      <div class="form-group">
+        <p>
+          <center><%= f.label :password, "New password", class: "col-md-4 control-label" %></center>
+
+          <div class="col-md-4">
+            <%= f.password_field :password, placeholder: "Change your password", help: "Must be at least 6 character long", class: "form-control" %>
+          </div>
+        </p>
+      </div> 
+
+      <center><%= f.submit "Update", class: " btn btn-primary" %></center>
     <% end %>
+    </br> </br> </br> </br> </br> </br>
   </body>
 </html>
 

@@ -1,8 +1,5 @@
-echo "install gem"
-bundle install
-echo "Rspec tests"
-rspec spec
-echo "Cucumber tests"
-cucumber features
-echo "lauch results"
-start "coverage/index.html"
+@echo off
+start /b /wait cmd.exe /c bundle install
+start /b /wait cmd.exe /c rspec spec
+
+start coverage/index.html

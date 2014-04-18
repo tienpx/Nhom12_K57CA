@@ -1,19 +1,19 @@
 {
   "RSpec": {
     "coverage": {
-      "C:/Users/Nguyen Thuy/Desktop/Nhom12_K57CA-master/app/helpers/application_helper.rb": [
+      "/media/pitago/WIN/Users/pitago/Documents/rails_projects/Nhom12_K57CA/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "C:/Users/Nguyen Thuy/Desktop/Nhom12_K57CA-master/app/helpers/user_helper.rb": [
+      "/media/pitago/WIN/Users/pitago/Documents/rails_projects/Nhom12_K57CA/app/helpers/user_helper.rb": [
         1,
         null
       ],
-      "C:/Users/Nguyen Thuy/Desktop/Nhom12_K57CA-master/app/helpers/users_helper.rb": [
+      "/media/pitago/WIN/Users/pitago/Documents/rails_projects/Nhom12_K57CA/app/helpers/users_helper.rb": [
         1,
         null
       ],
-      "C:/Users/Nguyen Thuy/Desktop/Nhom12_K57CA-master/app/models/user.rb": [
+      "/media/pitago/WIN/Users/pitago/Documents/rails_projects/Nhom12_K57CA/app/models/user.rb": [
         1,
         1,
         1,
@@ -24,7 +24,7 @@
         null,
         null
       ],
-      "C:/Users/Nguyen Thuy/Desktop/Nhom12_K57CA-master/app/controllers/users_controller.rb": [
+      "/media/pitago/WIN/Users/pitago/Documents/rails_projects/Nhom12_K57CA/app/controllers/users_controller.rb": [
         1,
         1,
         6,
@@ -78,7 +78,7 @@
         null,
         null
       ],
-      "C:/Users/Nguyen Thuy/Desktop/Nhom12_K57CA-master/app/controllers/application_controller.rb": [
+      "/media/pitago/WIN/Users/pitago/Documents/rails_projects/Nhom12_K57CA/app/controllers/application_controller.rb": [
         1,
         1,
         1,
@@ -91,7 +91,7 @@
         1,
         null
       ],
-      "C:/Users/Nguyen Thuy/Desktop/Nhom12_K57CA-master/app/controllers/sessions_controller.rb": [
+      "/media/pitago/WIN/Users/pitago/Documents/rails_projects/Nhom12_K57CA/app/controllers/sessions_controller.rb": [
         1,
         1,
         null,
@@ -110,6 +110,6 @@
         null
       ]
     },
-    "timestamp": 1397783211
+    "timestamp": 1397785582
   }
 }

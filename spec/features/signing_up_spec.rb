@@ -16,11 +16,12 @@ feature 'Signing up' do
   
   scenario 'sign up with password comfirmation not match' do
     visit '/'
-	click_link 'Sign up'
+	  click_link 'Sign up'
     fill_in "Username", with: "thuynt"
     fill_in "Email", with: "user@example.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "anything"
     click_button "Sign up"
+    expect(page).to have_content("Password confirmation doesn't match Password")
   end
 end

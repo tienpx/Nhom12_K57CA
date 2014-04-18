@@ -1,3 +1,33 @@
+* {
+	padding: 0px;
+	margin: 0px ;
+	font-family: Arial, Helvetica, Sans-serif;
+}
+
+div#wrapper {
+	width: 800px;
+}
+
+div#wrapper div#sidebar {
+    background: green;
+	pading: 10px;
+	float: left;
+	width: 200px;
+}
+
+div#wrapper div#sidebar ul{	
+ 	list-style: none;
+}
+
+div#wrapper div#sidebar ul li{
+	padding: none
+}
+
+div#wrapper div#content {
+  margin: 0px auto;	
+}
+
+
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/

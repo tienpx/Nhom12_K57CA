@@ -72,6 +72,18 @@ p {
   padding-bottom:150px; /* this needs to be bigger than footer height*/
 }
 
+footer ul li {
+  float: left;
+  margin-left: 10px;
+}
+
+#submit {
+  background: url(/assets/start.png) no-repeat;
+  width: 15px; 
+  height: 10px;
+}
+
+
 .footer {
   position: relative;
   margin-top: -150px; /* negative value of footer height */

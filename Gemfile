@@ -39,6 +39,7 @@ end
  gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'bootstrap-sass'
+gem 'bootstrap-form'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -56,9 +57,7 @@ group :test do
    gem 'capybara', "2.1.0"
    gem 'cucumber-rails', :require => false
    gem 'database_cleaner'
+   gem 'factory_girl_rails', '~> 4.2.1'
+   gem 'simplecov', :require => false, :group => :test
 end
 
-
-group :test do
-	gem 'factory_girl_rails', '~> 4.2.1'
-end

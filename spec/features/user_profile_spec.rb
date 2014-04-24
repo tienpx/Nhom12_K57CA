@@ -2,14 +2,13 @@ require 'spec_helper'
 
 feature "User profile" do
 	before do
-        user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user)
 
 		visit '/'
 		click_link 'Sign in'
-        fill_in "Name", with: user.name
-	    fill_in "Password", with: user.password
-	    click_button "Sign in"
-		click_link user.name
+    fill_in "Name", with: user.name
+	  fill_in "Password", with: user.password
+	  click_button "Sign in"
 	
 		expect(page.current_url).to eql(user_url(user))
 	end

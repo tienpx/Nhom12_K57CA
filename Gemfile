@@ -33,7 +33,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
- gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'bootstrap-sass'
 gem 'bootstrap-form'
@@ -48,6 +48,8 @@ gem 'bootstrap-form'
 # gem 'debugger', group: [:development, :test]
 group :test, :development do
   gem 'rspec-rails', "~> 2.14"
+  gem "teaspoon"
+  gem "phantomjs" , ">= 1.8.1.1"
 end
 
 group :test do

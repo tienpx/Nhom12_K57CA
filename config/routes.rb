@@ -1,5 +1,5 @@
 NHOM12K57ca::Application.routes.draw do
-
+  get "mindmap/new"
   get "mindmap/index"
   get "draw/index"
   root "users#index"

@@ -1,5 +1,5 @@
 NHOM12K57ca::Application.routes.draw do
-  get "mindmap/index"
+  get "mindmap/index", as: "mindmap_index"
   get "draw/index"
   root "users#index"
   resources :users

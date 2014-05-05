@@ -71,3 +71,6 @@ class Mindmap
   addChildNode: (parent) ->
 
   removeNode: (node_id) ->
+
+  removeAllNodes: ->
+    @canvas.innerHTML = ''

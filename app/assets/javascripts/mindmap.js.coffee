@@ -13,15 +13,15 @@ class Node
   initImg = () ->
     @img  = document.createElementNS(svg, 'image')
     @img.setAttributeNS(xlink, 'href', '../../assets/lib/animal/bird.png')
-    @img.setAttributeNS(null, 'x', 0)
-    @img.setAttributeNS(null, 'y', 0)
-    @img.setAttributeNS(null, 'width', '50')
-    @img.setAttributeNS(null, 'height', '50' )
+    @img.setAttribute('x', 0)
+    @img.setAttribute('y', 0)
+    @img.setAttribute('width', '50')
+    @img.setAttribute('height', '50' )
 
   initText = () ->
     @text = document.createElementNS(svg, 'text')
-    @text.setAttributeNS(null, 'x', '0')
-    @text.setAttributeNS(null, 'y', '60')
+    @text.setAttribute('x', '0')
+    @text.setAttribute('y', '60')
     @text.textContent = 'default'
 
 
@@ -41,11 +41,18 @@ class Node
   setImgSrc: (imgSrc) ->
     @img.setAttributeNS(xlink, 'href', imgSrc)
 
+  setPosition: (x, y) ->
+    @container.setAttribute('transform', 'translate(#{x}, #{y})')
+
 class Mindmap
-  canvas: null
+  canvas : null
+  width  : null
+  height : null
 
   constructor: ->
     @canvas = document.getElementById('draw_canvas')
+    @width  = document.getElementById('draw_area').offsetWidth;
+    @height = document.getElementById('draw_area').offsetHeight;
 
   addRootNode: ->
 
@@ -55,3 +62,4 @@ class Mindmap
 
 
 $ ->
+  new Mindmap().addRootNode()

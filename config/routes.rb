@@ -1,6 +1,8 @@
 NHOM12K57ca::Application.routes.draw do
+  get "mindmap/index", as: "mindmap_index"
+  get "draw/index"
   get "users/new"
-
+ 
   root :to => 'static_pages#home'
   resources :users do
     resources :folders

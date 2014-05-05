@@ -11,10 +11,9 @@ feature "User profile" do
 	  click_button "Sign in"
 	end
 
-  scenario "title is user name and some css elements" do
+  scenario "title is user name" do
   	expect(page).to have_content("Alice")
   	expect(page).to have_title(" | Alice")
-  	expect(page).to have_selector('div.alert.alert-success')
   end
 
 	scenario "updating a user profile" do

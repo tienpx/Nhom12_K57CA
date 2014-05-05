@@ -76,4 +76,4 @@ class Mindmap
     @canvas.innerHTML = ''
 
 $ ->
-  @mindmap = new Mindmap()
+  window.mindmap = new Mindmap()

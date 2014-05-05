@@ -10,7 +10,7 @@ class Node
   img: null
   text: null
 
-  init_img = () ->
+  initImg = () ->
     @img  = document.createElementNS(svg, 'image')
     @img.setAttributeNS(xlink, 'href', '../../assets/lib/animal/bird.png')
     @img.setAttributeNS(null, 'x', 0)
@@ -18,28 +18,28 @@ class Node
     @img.setAttributeNS(null, 'width', '50')
     @img.setAttributeNS(null, 'height', '50' )
 
-  init_text = () ->
+  initText = () ->
     @text = document.createElementNS(svg, 'text')
     @text.setAttributeNS(null, 'x', '0')
     @text.setAttributeNS(null, 'y', '60')
     @text.textContent = 'default'
 
 
-  init_container = () ->
+  initContainer = () ->
     @container = document.createElementNS(svg, 'g')
     @container.appendChild(@img)
     @container.appendChild(@text)
 
   constructor: ->
-    init_img()
-    init_text()
-    init_container()
+    initImg()
+    initText()
+    initContainer()
 
-  set_text: (text) ->
+  setText: (text) ->
     @text.textContent = text
 
-  set_img_src: (img_src) ->
-    @img.setAttributeNS(xlink, 'href', img_src)
+  setImgSrc: (imgSrc) ->
+    @img.setAttributeNS(xlink, 'href', imgSrc)
 
 class Mindmap
   canvas: null
@@ -47,11 +47,11 @@ class Mindmap
   constructor: ->
     @canvas = document.getElementById('draw_canvas')
 
-  add_root_node: ->
+  addRootNode: ->
 
-  add_node: (parent) ->
+  addNode: (parent) ->
 
-  remove_node: (node_id) ->
+  removeNode: (node_id) ->
 
 
 $ ->

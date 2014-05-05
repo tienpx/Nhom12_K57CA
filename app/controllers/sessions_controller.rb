@@ -1,17 +1,22 @@
 class SessionsController < ApplicationController
-	def new
-		
+	def new	
 	end
 
 	def create
-    @user = User.where(:name => params[:signin][:name]).first
+    @user = User.where(:email => params[:signin][:email]).first
     if @user && @user.authenticate(params[:signin][:password])
+      sign_in(@user)     
       session[:@user_id] = @user.id
       redirect_to user_path(@user)
     else
-      flash[:error] = "Your account haven't been registered yet. Please Singing up first!"
-      render :new
+      flash.now[:error] = 'Invalid email/password combination'
+      render 'new'
     end
+  end
+
+  def destroy
+    sign_out
+    redirect_to root_url
   end
 
 end

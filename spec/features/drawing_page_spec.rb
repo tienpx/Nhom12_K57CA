@@ -21,4 +21,10 @@ feature 'drawing page' do
     visit '/mindmap/new/'
     expect(page).to have_css("div#library")
   end
+
+  scenario 'create menu_bar buttons' do
+    visit '/mindmap/index/'
+    expect(page).to have_css("div#menu_bar")
+  end
+
 end

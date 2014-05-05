@@ -1,12 +1,18 @@
 NHOM12K57ca::Application.routes.draw do
   get "mindmap/index", as: "mindmap_index"
   get "draw/index"
-  root "users#index"
-  resources :users
-  #get "/users/:id/edit", "users#edit"
+  get "users/new"
+ 
+  root :to => 'static_pages#home'
+  resources :users do
+    resources :folders
+  end
+  match '/signup',  to: 'users#new', via: 'get'
+  get '/static_pages/home', :to =>'static_pages#home'
 
-  get "/signin", to: "sessions#new"
-  post "/signin", to: "sessions#create"
+  match "/signin", to: "sessions#new", via: 'get'
+  match "/signin", to: "sessions#create", via: 'post'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
 
   #post "/"
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,6 +1,17 @@
 require 'spec_helper'
 
 describe User do
+  before do
+    @user = User.new(name: "Example User", email: "user@example.com",
+                     password: "foobar", password_confirmation: "foobar")
+  end
+
+  subject { @user }
+
+  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:remember_token) }
+  it { should respond_to(:authenticate) }
+
   describe "passwords" do
     it "needs a password and confirmation to save" do
       u = User.new(name: "steve", email: "a@gmail.com")
@@ -39,5 +50,10 @@ describe User do
     it "does not authenticate with an incorrect password" do
       expect(user.authenticate("hunter1")).to_not be
     end
+  end
+
+  describe "remember_token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
   end
 end

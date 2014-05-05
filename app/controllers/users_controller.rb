@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
     if @user.save
+      flash[:success] = "You have signed up successfully"
+      sign_in(@user)
+      redirect_to @user
     else
       render :new
     end
@@ -23,8 +26,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-
-
   def update
     @user = User.find(params[:id])
     params = user_params.dup
@@ -36,10 +37,10 @@ class UsersController < ApplicationController
     end
 
     if @user.update(params)
-      flash[:notice] = "Your profile has been updated."
+      flash[:success] = "Your profile has been updated."
       redirect_to @user
     else
-      flash[:alert] = "Your profile has not been updated."
+      flash[:error] = "Your profile has not been updated."
       render :action => "edit"
     end
   end

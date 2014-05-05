@@ -7,4 +7,4 @@ Feature: Create a new mindmap
   Scenario: New mindmap
     Given I am on the mindmap_index page
     When I click "New"
-    Then I should see only on root node in the drawing area
+    Then I should see only one root node in the drawing area

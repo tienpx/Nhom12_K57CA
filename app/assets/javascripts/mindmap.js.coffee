@@ -10,7 +10,7 @@ class Node
   img: null
   text: null
 
-  initImg = () ->
+  initImg = ->
     @img  = document.createElementNS(svg, 'image')
     @img.setAttributeNS(xlink, 'href', '../../assets/lib/animal/bird.png')
     @img.setAttribute('x', 0)
@@ -18,22 +18,22 @@ class Node
     @img.setAttribute('width', '50')
     @img.setAttribute('height', '50' )
 
-  initText = () ->
+  initText = ->
     @text = document.createElementNS(svg, 'text')
     @text.setAttribute('x', '0')
     @text.setAttribute('y', '60')
     @text.textContent = 'default'
 
 
-  initContainer = () ->
+  initContainer = ->
     @container = document.createElementNS(svg, 'g')
     @container.appendChild(@img)
     @container.appendChild(@text)
 
   constructor: ->
-    initImg()
-    initText()
-    initContainer()
+    initImg.call(@)
+    initText.call(@)
+    initContainer.call(@)
 
   setText: (text) ->
     @text.textContent = text
@@ -42,7 +42,7 @@ class Node
     @img.setAttributeNS(xlink, 'href', imgSrc)
 
   setPosition: (x, y) ->
-    @container.setAttribute('transform', 'translate(#{x}, #{y})')
+    @container.setAttribute('transform', "translate(#{x}, #{y})")
 
   getWidth: ->
     return @container.getBoundingClientRect().width
@@ -61,12 +61,13 @@ class Mindmap
     @height = document.getElementById('draw_area').offsetHeight;
 
   addRootNode: ->
-
+    node = new Node
+    left = (@width - node.getWidth()) // 2
+    top  = (@height - node.getHeight()) // 2
+    node.setPosition(left, top)
+    node.setText('root')
+    @canvas.appendChild(node.container)
 
   addNode: (parent) ->
 
   removeNode: (node_id) ->
-
-
-$ ->
-  new Mindmap().addRootNode()

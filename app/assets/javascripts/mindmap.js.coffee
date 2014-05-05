@@ -41,8 +41,17 @@ class Node
   set_img_src: (img_src) ->
     @img.setAttributeNS(xlink, 'href', img_src)
 
+class Mindmap
+  canvas: null
 
-mindmap =
+  constructor: ->
+    @canvas = document.getElementById('draw_canvas')
+
+  add_root_node: ->
+
   add_node: (parent) ->
-  remove_node: (node) ->
-  empty: ->
+
+  remove_node: (node_id) ->
+
+
+$ ->

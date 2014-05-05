@@ -44,6 +44,12 @@ class Node
   setPosition: (x, y) ->
     @container.setAttribute('transform', 'translate(#{x}, #{y})')
 
+  getWidth: ->
+    return @container.getBoundingClientRect().width
+
+  getHeight: ->
+    return @container.getBoundingClientRect().height
+
 class Mindmap
   canvas : null
   width  : null
@@ -55,6 +61,7 @@ class Mindmap
     @height = document.getElementById('draw_area').offsetHeight;
 
   addRootNode: ->
+
 
   addNode: (parent) ->
 

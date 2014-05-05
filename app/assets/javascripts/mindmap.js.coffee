@@ -68,6 +68,6 @@ class Mindmap
     node.setText('root')
     @canvas.appendChild(node.container)
 
-  addNode: (parent) ->
+  addChildNode: (parent) ->
 
   removeNode: (node_id) ->

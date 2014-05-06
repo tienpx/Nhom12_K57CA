@@ -9,6 +9,8 @@ class Node
   IMG_SIZE   = 50
   IMG_MARGIN = 10
 
+  @_numOfInstance = 0
+
   container: null
   img: null
   text: null
@@ -31,10 +33,12 @@ class Node
   initContainer = ->
     @container = document.createElementNS(svg, 'g')
     @container.className = 'node'
+    @container.id = 'node_' + @_numOfInstance
     @container.appendChild(@img)
     @container.appendChild(@text)
 
   constructor: ->
+    @_numOfInstance++
     @initImg()
     @initText()
     @initContainer()

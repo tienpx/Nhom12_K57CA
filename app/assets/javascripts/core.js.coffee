@@ -64,6 +64,7 @@ class Link
 
   constructor: (x1, y1, x2, y2) ->
     @line = document.createElementNS(svg, 'line')
+    @_numOfInstance++
     @line.id = 'line_' + @_numOfInstance
     @setPointA(x1, y1)
     @setPointB(x2, y2)
@@ -85,6 +86,9 @@ class Link
   setPointB: (x, y) ->
     @line.setAttribute('x2', x)
     @line.setAttribute('y2', y)
+
+  setColor: (color) ->
+    @line.style.stroke = color
 
 class Mindmap
   canvas : null

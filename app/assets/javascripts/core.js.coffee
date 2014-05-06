@@ -6,6 +6,9 @@ svg = 'http://www.w3.org/2000/svg'
 xlink  = 'http://www.w3.org/1999/xlink'
 
 class Node
+  IMG_SIZE   = 50
+  IMG_MARGIN = 10
+
   container: null
   img: null
   text: null
@@ -15,13 +18,13 @@ class Node
     @img.setAttributeNS(xlink, 'href', '../../assets/lib/animal/bird.png')
     @img.setAttribute('x', 0)
     @img.setAttribute('y', 0)
-    @img.setAttribute('width', '50')
-    @img.setAttribute('height', '50' )
+    @img.setAttribute('width', IMG_SIZE)
+    @img.setAttribute('height',IMG_SIZE)
 
   initText = ->
     @text = document.createElementNS(svg, 'text')
     @text.setAttribute('x', '0')
-    @text.setAttribute('y', '60')
+    @text.setAttribute('y', IMG_SIZE + IMG_MARGIN)
     @text.textContent = 'default'
 
 
@@ -37,6 +40,9 @@ class Node
 
   setText: (text) ->
     @text.textContent = text
+    textWidth  = @text.getComputedTextLength()
+    left = (IMG_SIZE - textWidth) // 2
+    @text.setAttribute('x', left)
 
   setImgSrc: (imgSrc) ->
     @img.setAttributeNS(xlink, 'href', imgSrc)
@@ -62,11 +68,11 @@ class Mindmap
 
   addRootNode: ->
     node = new Node
+    @canvas.appendChild(node.container)
     left = (@width - node.getWidth()) // 2
     top  = (@height - node.getHeight()) // 2
     node.setPosition(left, top)
     node.setText('root')
-    @canvas.appendChild(node.container)
 
   addChildNode: (parent) ->
 

@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313105037) do
+ActiveRecord::Schema.define(version: 20140506142552) do
+
+  create_table "mindmaps", force: true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mindmaps", ["user_id"], name: "index_mindmaps_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

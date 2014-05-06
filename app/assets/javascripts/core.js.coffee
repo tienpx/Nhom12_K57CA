@@ -30,6 +30,7 @@ class Node
 
   initContainer = ->
     @container = document.createElementNS(svg, 'g')
+    @container.className = 'node'
     @container.appendChild(@img)
     @container.appendChild(@text)
 

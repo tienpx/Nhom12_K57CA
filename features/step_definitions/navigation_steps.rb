@@ -101,3 +101,7 @@ end
 Then /^page should have (.+) message "([^\"]*)"$/ do |type, text|
   page.has_css?("p.#{type}", :text => text, :visible => true)
 end
+
+When /^I click mouse on location\((\d+),(\d+)\)$/ do |x, y|
+  execute_script("document.getElementById('draw_canvas').elementFromPoint(#{x},#{y}).click()")
+end

@@ -56,6 +56,10 @@ When /^I choose "([^\"]*)"$/ do |field|
   choose(field)
 end
 
+Then /^I should see the (.*) button$/ do |button|
+  page.should have_button(button)
+end
+
 Then /^I should see "([^\"]*)"$/ do |text|
   page.should have_content(text)
 end

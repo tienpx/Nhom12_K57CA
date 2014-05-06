@@ -1,4 +1,14 @@
-require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'support', 'paths'))
+
+Given /^I am an authenticated user$/ do
+  user = FactoryGirl.create(:user)
+
+  visit '/'
+  click_link 'Sign in'
+  fill_in 'Email', with: user.email
+  fill_in 'Password', with: user.password
+  click_button 'Sign in'
+end
 
 Given /^I am on (.+)$/ do |page_name|
   visit path_to(page_name)

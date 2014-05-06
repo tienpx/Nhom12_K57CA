@@ -57,6 +57,35 @@ class Node
   getHeight: ->
     return @container.getBoundingClientRect().height
 
+class Link
+  @_numOfInstance = 0
+
+  line: null
+
+  constructor: (x1, y1, x2, y2) ->
+    @line = document.createElementNS(svg, 'line')
+    @line.id = 'line_' + @_numOfInstance
+    @setPointA(x1, y1)
+    @setPointB(x2, y2)
+
+  getPointA: ->
+    x = @line.getAttribute('x1')
+    y = @line.getAttribute('y1')
+    return [x, y]
+
+  getPointB: ->
+    x = @line.getAttribute('x2')
+    y = @line.getAttribute('y2')
+    return [x, y]
+
+  setPointA: (x, y) ->
+    @line.setAttribute('x1', x)
+    @line.setAttribute('y1', y)
+
+  setPointB: (x, y) ->
+    @line.setAttribute('x2', x)
+    @line.setAttribute('y2', y)
+
 class Mindmap
   canvas : null
   width  : null

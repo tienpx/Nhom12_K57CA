@@ -12,19 +12,23 @@
 
 <body>
   <div id="tools_box">
-
+    <button type="button" onclick="MMTools.new()">New</button>
   </div>
   <div id="draw_area">
     <svg id="draw_canvas"></svg>
   </div>
   <div id="library">
-    <button type="button" onclick="MMTools.new()">New</button>
+    <ul id="animal">
+      <% @image_list.each do |image| %>
+         <li><%= image_tag "lib/animal/#{image.split('/').last}" %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="menu_bar">
     <button type="button" class="btn btn-group btn-lg">
       <span class="glyphicon glyphicon-saved"></span>
     </button>
     <button type="button" class="btn btn-group btn-lg">Load</button>
-  </div>
-  <div id="menu_bar">
   </div>
 </body>
 

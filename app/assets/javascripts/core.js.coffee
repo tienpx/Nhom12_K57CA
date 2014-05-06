@@ -35,9 +35,9 @@ class Node
     @container.appendChild(@text)
 
   constructor: ->
-    initImg.call(@)
-    initText.call(@)
-    initContainer.call(@)
+    @initImg()
+    @initText()
+    @initContainer()
 
   setText: (text) ->
     @text.textContent = text

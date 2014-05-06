@@ -56,7 +56,7 @@ When /^I choose "([^\"]*)"$/ do |field|
   choose(field)
 end
 
-Then /^I should see the (.*) button$/ do |button|
+Then /^I should see the "(.*)" button$/ do |button|
   page.should have_button(button)
 end
 

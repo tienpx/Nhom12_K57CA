@@ -6,7 +6,7 @@ Feature: Create a new mindmap
   Scenario: Visit the mindmap page
     Given I am an authenticated user
       And I am on the mindmap_index page
-    Then I should see the New button
+    Then I should see the "New" button
 
   @javascript
   Scenario: Create a new mindmap

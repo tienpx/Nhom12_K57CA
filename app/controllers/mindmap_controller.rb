@@ -10,19 +10,21 @@ class MindmapController < ApplicationController
     for category in @categories
       @image_list[category] = Dir.glob("app/assets/images/lib/#{category}/*.*")
     end
+    @current_category = @categories[0]
   end
 
   def index
-    @current_category = @categories[0]
   end
 
   def create
   end
 
   def load_lib_image
-    @current_category = params[:category]
-    respond_to do |format|
-      format.js
+    if @current_category != params[:category]
+      @current_category = params[:category]
+      respond_to do |format|
+        format.js
+      end
     end
   end
 

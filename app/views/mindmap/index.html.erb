@@ -18,6 +18,14 @@
     <svg id="draw_canvas"></svg>
   </div>
   <div id="library">
+    <div id="lib_header">
+      <%= form_tag({:action => 'load_lib_image'}, :id => 'select_category', :remote => true) do %>
+         <%= select_tag 'category', options_for_select(@categories) %>
+         <%= submit_tag 'load images' %>
+      <% end %>
+    </div>
+    <div id="lib">
+    </div>
   </div>
   <div id="menu_bar">
     <button type="button" class="btn btn-group btn-lg" onclick="MMTools.new()">New</button>

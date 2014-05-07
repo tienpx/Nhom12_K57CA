@@ -61,3 +61,5 @@ group :test do
    gem 'selenium-webdriver'
 end
 
+gem 'omniauth'
+gem 'omniauth-facebook', '1.4.0'

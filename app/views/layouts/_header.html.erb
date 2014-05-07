@@ -4,13 +4,8 @@
       <%= link_to "Mind Map", root_path, id: "logo" %>
 
       <nav id="menu"> 
-        <% if signed_in? %>  
+        <% if signed_in? %>            
           <ul class="nav pull-right">
-            <li><%= link_to "Users", '#' %></li>
-           </ul>
-            
-          <ul class="nav pull-right">
-
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
@@ -28,6 +23,10 @@
               </ul>
             </li>
           </ul>
+          
+          <ul class="nav pull-right">
+            <li><%= link_to "New", new_user_mindmap_path(current_user) %></li>
+           </ul>
 
           <ul class="nav pull-right">
             <li><%= link_to current_user.name,user_path(current_user) %></li>

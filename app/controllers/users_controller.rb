@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "You have signed up successfully"
       sign_in(@user)
-      redirect_to @user
+      redirect_to root_url
     else
       render :new
     end

@@ -53,7 +53,7 @@ group :test, :development do
 end
 
 group :test do
-   gem 'capybara', "2.1.0"
+   gem 'capybara', '2.1.0'
    gem 'simplecov', '~> 0.7.1', :require => false
    gem 'cucumber-rails', :require => false
    gem 'database_cleaner'

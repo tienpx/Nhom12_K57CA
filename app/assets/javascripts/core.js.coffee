@@ -78,6 +78,9 @@ class Node
   setPosition: (x, y) ->
     @container.setAttribute('transform', "translate(#{x}, #{y})")
 
+  focus: ->
+    @container.focus()
+
   getWidth: ->
     return parseInt(@container.getBoundingClientRect().width, 10)
 
@@ -91,15 +94,12 @@ class Node
     return parseInt(@container.getAttribute('transform').match(/\d*\.?\d+/g)[1], 10)
 
   addEventHandlers: ->
-    @container.addEventListener('click', Node.onClickEvent)
     @container.addEventListener('focusin', Node.onFocusEvent)
     @container.addEventListener('focusout', Node.onBlurEvent)
 
-  @onClickEvent: (e) ->
-    mindmap.focusedItem = new Node(this)
-
   @onFocusEvent: (e) ->
     node = new Node(this)
+    mindmap.focusedItem = node
     node.border.setAttribute("visibility", "visible")
 
   @onBlurEvent: (e) ->
@@ -165,13 +165,14 @@ class Mindmap
     x = (@width - root.getWidth()) // 2
     y = (@height - root.getHeight()) // 2
     root.setPosition(x, y)
-    @focusedItem = root
+    root.focus()
     return root
 
   addChildNode: (parent, x, y) ->
     child = @addNode()
     child.setPosition(x, y)
     @addLink(parent, child)
+    parent.focus()
     return child
 
   getRelativeXY: (absX, absY) ->

@@ -64,7 +64,3 @@ redraw = () ->
     context.stroke();
   0
 
-$ ->
-  init()
-  handle()
-

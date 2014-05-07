@@ -18,11 +18,14 @@
     <svg id="draw_canvas"></svg>
   </div>
   <div id="library">
-    <ul id="animal">
-      <% @image_list.each do |image| %>
-         <li><%= image_tag "lib/animal/#{image.split('/').last}" %></li>
+    <div id="lib_header">
+      <%= form_tag({:action => 'load_lib_image'}, :id => 'select_category', :remote => true) do %>
+        <%= select_tag 'category', options_for_select(@categories) %>
+        <%= submit_tag 'load images' %>
       <% end %>
-    </ul>
+    </div>
+    <div id="lib">
+    </div>
   </div>
   <div id="menu_bar">
     <button type="button" class="btn btn-group btn-lg">

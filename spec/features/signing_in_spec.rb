@@ -24,6 +24,7 @@ feature "Signing in" do
     click_button 'Sign in'
  
     expect(page).to have_content(user.name)
+    expect(page).to have_link('Users')
     expect(page).to have_link('Profile')
     expect(page).to have_link('Settings')
     expect(page).to have_link('Sign out')

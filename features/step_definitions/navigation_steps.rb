@@ -1,4 +1,14 @@
-require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'support', 'paths'))
+
+Given /^I am an authenticated user$/ do
+  user = FactoryGirl.create(:user)
+
+  visit '/'
+  click_link 'Sign in'
+  fill_in 'Email', with: user.email
+  fill_in 'Password', with: user.password
+  click_button 'Sign in'
+end
 
 Given /^I am on (.+)$/ do |page_name|
   visit path_to(page_name)
@@ -46,6 +56,10 @@ When /^I choose "([^\"]*)"$/ do |field|
   choose(field)
 end
 
+Then /^I should see the "(.*)" button$/ do |button|
+  page.should have_button(button)
+end
+
 Then /^I should see "([^\"]*)"$/ do |text|
   page.should have_content(text)
 end
@@ -86,4 +100,8 @@ end
 
 Then /^page should have (.+) message "([^\"]*)"$/ do |type, text|
   page.has_css?("p.#{type}", :text => text, :visible => true)
+end
+
+When /^I click mouse on location\((\d+),(\d+)\)$/ do |x, y|
+  execute_script("document.getElementById('draw_canvas').elementFromPoint(#{x},#{y}).click()")
 end

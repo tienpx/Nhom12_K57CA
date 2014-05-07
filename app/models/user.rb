@@ -5,11 +5,9 @@ class User < ActiveRecord::Base
 	has_secure_password
 
 	validates :name, presence: true 
-  has_many :mindmaps , dependent: :delete_all
-
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
-  #validates :password, presence: true
+  validates :password, presence: true
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

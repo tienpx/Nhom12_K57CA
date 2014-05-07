@@ -2,46 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#tools_box, #menu_bar{
+#tools_box, #menu_bar {
   width: 1024px;
   height: 50px;
   border: black 1px dashed;
-  float: left;
-  clear: both;
 }
 
 #draw_area {
   width: 800px;
   height: 600px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border: black 1px solid;
-  float: left;
-}
-
-#library {
-  border: black 1px solid;
-  width: 300px;
-  height: 600px;
-  float: left;
-}
-
-#lib_header{
-  width: 300px;
-  height: 20px;
-  border: black 1px solid;
-}
-
-#lib {
-  width: 300px;
-  height: 580px;
-  overflow: auto;
 }
 
 #draw_canvas {
   width: inherit;
   height: inherit;
-}
-
-li {
-  text-align: center;
-  list-style-type: none;
 }

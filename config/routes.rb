@@ -2,11 +2,10 @@ NHOM12K57ca::Application.routes.draw do
   get "mindmap/index", as: "mindmap_index"
   get "draw/index"
   get "users/new"
-  post "mindmap/load_lib_image"
-
+ 
   root :to => 'static_pages#home'
   resources :users do
-    resources :mindmaps
+    resources :folders
   end
   match '/signup',  to: 'users#new', via: 'get'
   get '/static_pages/home', :to =>'static_pages#home'

@@ -32,7 +32,7 @@ class Node
 
   initContainer = ->
     @container = document.createElementNS(svg, 'g')
-    @container.className = 'node'
+    @container.className = 'MMNode'
     @container.id = 'node_' + @_numOfInstance
     @container.appendChild(@img)
     @container.appendChild(@text)
@@ -67,8 +67,9 @@ class Link
   line: null
 
   constructor: (x1, y1, x2, y2) ->
-    @line = document.createElementNS(svg, 'line')
     @_numOfInstance++
+    @line = document.createElementNS(svg, 'line')
+    @line.className = 'MMLink'
     @line.id = 'line_' + @_numOfInstance
     @setPointA(x1, y1)
     @setPointB(x2, y2)

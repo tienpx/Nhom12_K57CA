@@ -85,22 +85,20 @@ class Node
     return parseInt(@container.getBoundingClientRect().height, 10)
 
   getLeft: ->
-    return parseInt(@container.getAttribute('transform').match(/\d+/g)[0], 10)
+    return parseInt(@container.getAttribute('transform').match(/\d*\.?\d+/g)[0], 10)
 
   getTop: ->
-    return parseInt(@container.getAttribute('transform').match(/\d+/g)[1], 10)
+    return parseInt(@container.getAttribute('transform').match(/\d*\.?\d+/g)[1], 10)
 
   addEventHandlers: ->
     @container.addEventListener('click', Node.onClickEvent)
-    @container.addEventListener('onfocus', Node.onFocusEvent)
-    @container.addEventListener('onblur', Node.onBlurEvent)
+    @container.addEventListener('focusin', Node.onFocusEvent)
+    @container.addEventListener('focusout', Node.onBlurEvent)
 
   @onClickEvent: (e) ->
     mindmap.focusedItem = new Node(this)
 
-
   @onFocusEvent: (e) ->
-    alert('oh')
     node = new Node(this)
     node.border.setAttribute("visibility", "visible")
 
@@ -182,7 +180,7 @@ class Mindmap
     point.y = absY
     return point.matrixTransform(@canvas.getScreenCTM().inverse())
 
-  removeNode: (node_id) ->
+  removeNode: (node) ->
 
   removeAllNodes: ->
     @canvas.innerHTML = ''

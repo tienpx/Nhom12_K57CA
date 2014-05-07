@@ -6,7 +6,7 @@ NHOM12K57ca::Application.routes.draw do
 
   root :to => 'static_pages#home'
   resources :users do
-    resources :folders
+    resources :mindmaps
   end
   match '/signup',  to: 'users#new', via: 'get'
   get '/static_pages/home', :to =>'static_pages#home'

@@ -3,8 +3,8 @@
     <div class="container">
       <%= link_to "Mind Map", root_path, id: "logo" %>
 
-      <nav id="menu"> 
-        <% if signed_in? %>            
+      <nav id="menu">
+        <% if signed_in? %>
           <ul class="nav pull-right">
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -16,14 +16,14 @@
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
 
                 <li class="divider"></li>
-                
+
                 <li>
                   <%= link_to "Sign out", signout_path, method: "delete" %>
                 </li>
               </ul>
             </li>
           </ul>
-          
+
           <ul class="nav pull-right">
             <li><%= link_to "New", new_user_mindmap_path(current_user) %></li>
            </ul>
@@ -39,11 +39,11 @@
           <ul class="nav pull-right">
             <li><%= link_to "Sign in", signin_path %></li>
           </ul>
-        <% end %> 
+        <% end %>
 
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
-        </ul> 
+        </ul>
       </nav>
     </div>
   </div>

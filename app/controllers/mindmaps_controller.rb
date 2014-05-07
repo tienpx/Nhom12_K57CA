@@ -1,13 +1,13 @@
 class MindmapsController < ApplicationController
 	before_action :set_user
-	 before_action :set_mindmap, only: [:show, :edit, :update, :destroy]
+	before_action :set_mindmap, only: [:show, :edit, :update, :destroy]
 
 	def new
 		@mindmap = @user.mindmaps.build
 	end
 
 	def create
-  	    @mindmap = @user.mindmaps.build(mindmap_params)
+  	  @mindmap = @user.mindmaps.build(mindmap_params)
    		if @mindmap.save
      		flash[:notice] = "Mindmap has been created."
      		redirect_to user_mindmaps_path

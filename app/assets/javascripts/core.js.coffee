@@ -100,11 +100,11 @@ class Node
   @onFocusEvent: (e) ->
     node = new Node(this)
     mindmap.focusedItem = node
-    node.border.setAttribute("visibility", "visible")
+    #node.border.setAttribute("visibility", "visible")
 
   @onBlurEvent: (e) ->
     node = new Node(this)
-    node.border.setAttribute("visibility", "hidden")
+    #node.border.setAttribute("visibility", "hidden")
 
 class Link
   line: null

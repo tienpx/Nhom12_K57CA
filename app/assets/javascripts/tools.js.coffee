@@ -19,6 +19,6 @@ window.MMTools =
       x = point.x - mindmap.focusedItem.getWidth() // 2
       y = point.y - mindmap.focusedItem.getHeight() // 2
       node = mindmap.focusedItem
-      new_text = prompt('New text', node.text)
+      new_text = prompt('New text', node.text.text)
       node.setText new_text
     mindmap.canvas.addEventListener('click', handler)

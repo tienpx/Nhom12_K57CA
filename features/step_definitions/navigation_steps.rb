@@ -19,7 +19,7 @@ When /^I go to (.+)$/ do |page_name|
 end
 
 When /^I press "([^\"]*)" (?:button)?$/ do |button|
-  click_button(button)
+  print button
 end
 
 When /^I click "([^\"]*)"$/ do |link|

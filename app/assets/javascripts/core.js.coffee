@@ -6,6 +6,8 @@ svg = 'http://www.w3.org/2000/svg'
 xlink  = 'http://www.w3.org/1999/xlink'
 
 class Node
+  @_numOfInstance: 0
+
   IMG_SIZE    = 50
   IMG_MARGIN  = 10
   TEXT_HEIGHT = 4
@@ -30,17 +32,20 @@ class Node
 
   _initContainer = ->
     @container = document.createElementNS(svg, 'g')
+    @container.id = 'node_' + Node._numOfInstance
     @container.className = 'MMNode'
     @container.appendChild(@img)
     @container.appendChild(@text)
 
   _createFromObj = (container) ->
     @container = container
+    @container.id
     @img  = @container.getElementsByTagName('image')[0]
     @text = @container.getElementsByTagName('text')[0]
 
   constructor: ->
     if arguments.length == 0
+      Node._numOfInstance++
       _initImg.call(@)
       _initText.call(@)
       _initContainer.call(@)
@@ -89,8 +94,9 @@ class Node
 class Link
   line: null
 
-  constructor: ->
+  constructor: (parentId, childId) ->
     @line = document.createElementNS(svg, 'line')
+    @line.id = "line_#{parentId}_#{childId}"
     @line.className = 'MMLink'
     @setColor('black')
 

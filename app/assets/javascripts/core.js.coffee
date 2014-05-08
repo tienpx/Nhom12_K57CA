@@ -36,7 +36,7 @@ class Node
 
   _createFromObj = (container) ->
     @container = container
-    @img  = @container.getElementsByTagName('img')[0]
+    @img  = @container.getElementsByTagName('image')[0]
     @text = @container.getElementsByTagName('text')[0]
 
   constructor: ->
@@ -64,7 +64,7 @@ class Node
     @container.focus()
 
   getWidth: ->
-    return parseInt(@container.getBoundingClientRect().width, 10)
+    return IMG_SIZE
 
   getHeight: ->
     return parseInt(@container.getBoundingClientRect().height, 10)

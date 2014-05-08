@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
- def index
+  def index
     @users = User.all
- end 
+  end
 
   def new
-  	@user = User.new
+    @user = User.new
   end
 
   def create
-  	@user = User.new(user_params)
+    @user = User.new(user_params)
     if @user.save
       flash[:success] = "You have signed up successfully"
       sign_in(@user)

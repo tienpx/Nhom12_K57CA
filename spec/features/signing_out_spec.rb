@@ -11,9 +11,9 @@ feature "Signing out" do
     click_button 'Sign in'
   end
   scenario 'signing out successfully' do
-  	click_link 'Account'
-  	click_link 'Sign out'
+    click_link 'Account'
+    click_link 'Sign out'
 
-  	expect(page).to have_link('Sign in')
+    expect(page).to have_link('Sign in')
   end
 end

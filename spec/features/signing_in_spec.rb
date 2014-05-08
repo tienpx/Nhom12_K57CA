@@ -7,13 +7,13 @@ feature "Signing in" do
     visit '/'
     click_link 'Sign in'
   end
- 
+
   scenario 'title' do
     expect(page).to have_title(' | Sign in')
   end
 
   scenario 'with invalid information' do
-    click_button "Sign in"  
+    click_button "Sign in"
 
     expect(page).to have_selector('div.alert.alert-error')
   end
@@ -22,7 +22,7 @@ feature "Signing in" do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Sign in'
- 
+
     expect(page).to have_content(user.name)
     expect(page).to have_link('Users')
     expect(page).to have_link('Profile')

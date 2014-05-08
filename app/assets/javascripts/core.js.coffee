@@ -241,5 +241,8 @@ class Mindmap
   @onDropEvent: (e) ->
     Mindmap.draggedItem = null
 
+  getData: ->
+    html = document.getElementById('draw_canvas').innerHTML  
+
 $ ->
   window.mindmap = new Mindmap()

@@ -4,6 +4,8 @@ NHOM12K57ca::Application.routes.draw do
   get "users/new"
   post 'mindmap/load_lib_image'
 
+  post "mindmap/save"
+
   root :to => 'static_pages#home'
   resources :users do
     resources :mindmaps

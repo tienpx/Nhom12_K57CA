@@ -30,4 +30,8 @@ class MindmapController < ApplicationController
 
   def delete
   end
+
+  def save
+  end
+
 end

@@ -22,3 +22,10 @@ window.MMTools =
       new_text = prompt('New text', node.text.text)
       node.setText new_text
     mindmap.canvas.addEventListener('click', handler)
+
+  save: ->
+    html = mindmap.getData()
+    $.post '/mindmap/save',
+        text: html
+        (data) -> alert "Save successfully!"
+

@@ -167,5 +167,8 @@ class Mindmap
   removeAllNodes: ->
     @canvas.innerHTML = ''
 
+  getData: ->
+    html = document.getElementById('draw_canvas').innerHTML  
+
 $ ->
   window.mindmap = new Mindmap()

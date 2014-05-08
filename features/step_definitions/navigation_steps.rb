@@ -19,8 +19,8 @@ When /^I go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
-When /^I press "([^\"]*)"$/ do |button|
-  click_button(button)
+When /^I press "([^\"]*)" (?:button)?$/ do |button|
+  print button
 end
 
 When /^I click "([^\"]*)"$/ do |link|
@@ -61,8 +61,16 @@ Then /^I should see the "(.*)" button$/ do |button|
   page.should have_button(button)
 end
 
+Then /^I should see the "(.*)" select box$/ do |select_id|
+  page.should have_selector("select##{select_id}")
+end
+
 Then /^I should see "([^\"]*)"$/ do |text|
   page.should have_content(text)
+end
+
+Then /^I should see "([^\"]*)" image$/ do |image_alt|
+  expect(page).to have_css('div#lib img[alt="#{image_alt}"]')
 end
 
 Then /^I should see \/([^\/]*)\/$/ do |regexp|

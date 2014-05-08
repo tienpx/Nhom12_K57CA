@@ -14,6 +14,7 @@
   width: 100%;
   height: 580px;
   overflow: auto;
+  text-align: center;
 }
 
 #lib_header {
@@ -33,7 +34,7 @@
 }
 
 #draw_canvas {
-  width: inherit;
+  width: 100%;
   height: inherit;
 }
 

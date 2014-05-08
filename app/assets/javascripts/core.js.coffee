@@ -10,7 +10,9 @@ class Node
 
   IMG_SIZE    = 50
   IMG_MARGIN  = 10
+  IMG_DEFAULT_URL = '../../assets/lib/animal/bird.png'
   TEXT_HEIGHT = 4
+  TEXT_DEFAULT = 'default'
 
   container: null
   img: null
@@ -18,7 +20,7 @@ class Node
 
   _initImg = ->
     @img  = document.createElementNS(svg, 'image')
-    @img.setAttributeNS(xlink, 'href', '../../assets/lib/animal/bird.png')
+    @img.setAttributeNS(xlink, 'href', IMG_DEFAULT_URL)
     @img.setAttribute('x', 0)
     @img.setAttribute('y', 0)
     @img.setAttribute('width', IMG_SIZE)
@@ -28,7 +30,7 @@ class Node
     @text = document.createElementNS(svg, 'text')
     @text.setAttribute('x', '0')
     @text.setAttribute('y', IMG_SIZE + IMG_MARGIN)
-    @text.textContent = 'default'
+    @text.textContent = TEXT_DEFAULT
 
   _initContainer = ->
     @container = document.createElementNS(svg, 'g')
@@ -52,6 +54,9 @@ class Node
       @addEventHandlers()
     else
       _createFromObj.call(@, arguments[0])
+
+  getText: ->
+    return @text.textContent
 
   setText: (text) ->
     @text.textContent = text
@@ -167,6 +172,7 @@ class Link
   setColor: (color) ->
     @line.style.stroke = color
 
+
 class Mindmap
   @focusedItem: null
   @draggedItem: null
@@ -175,10 +181,13 @@ class Mindmap
   width  : null
   height : null
 
+  CANVAS_ID = 'draw_canvas'
+  CANVAS_WRAP_ID = 'draw_area'
+
   constructor: ->
-    @canvas = document.getElementById('draw_canvas')
-    @width  = document.getElementById('draw_area').offsetWidth;
-    @height = document.getElementById('draw_area').offsetHeight;
+    @canvas = document.getElementById(CANVAS_ID)
+    @width  = document.getElementById(CANVAS_WRAP_ID).offsetWidth;
+    @height = document.getElementById(CANVAS_WRAP_ID).offsetHeight;
     @enableNodeDrag()
 
   addNode: ->
@@ -242,7 +251,7 @@ class Mindmap
     Mindmap.draggedItem = null
 
   getData: ->
-    html = document.getElementById('draw_canvas').innerHTML  
+    html = document.getElementById(CANVAS_ID).innerHTML
 
 $ ->
   window.mindmap = new Mindmap()

@@ -53,6 +53,9 @@ class Node
     else
       _createFromObj.call(@, arguments[0])
 
+  getText: ->
+    return @text.textContent
+
   setText: (text) ->
     @text.textContent = text
     textWidth  = @text.getComputedTextLength()
@@ -242,7 +245,7 @@ class Mindmap
     Mindmap.draggedItem = null
 
   getData: ->
-    html = document.getElementById('draw_canvas').innerHTML  
+    html = document.getElementById('draw_canvas').innerHTML
 
 $ ->
   window.mindmap = new Mindmap()

@@ -3,7 +3,7 @@ Feature: Drawing Interface
   As a logged-in user
   I want a page that contains Drawing interface
 
-  Scenario: Rename mindmap
+  Scenario: mindmap draw interface
     Given I am an authenticated user
     And I am on the mindmap_index page
     Then I should see field named "menu_bar"

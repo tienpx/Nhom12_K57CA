@@ -6,6 +6,8 @@ svg = 'http://www.w3.org/2000/svg'
 xlink  = 'http://www.w3.org/1999/xlink'
 
 class Node
+  @_numOfInstance: 0
+
   IMG_SIZE    = 50
   IMG_MARGIN  = 10
   TEXT_HEIGHT = 4
@@ -30,17 +32,20 @@ class Node
 
   _initContainer = ->
     @container = document.createElementNS(svg, 'g')
+    @container.id = 'node' + Node._numOfInstance
     @container.className = 'MMNode'
     @container.appendChild(@img)
     @container.appendChild(@text)
 
   _createFromObj = (container) ->
     @container = container
+    @container.id
     @img  = @container.getElementsByTagName('image')[0]
     @text = @container.getElementsByTagName('text')[0]
 
   constructor: ->
     if arguments.length == 0
+      Node._numOfInstance++
       _initImg.call(@)
       _initText.call(@)
       _initContainer.call(@)
@@ -63,6 +68,9 @@ class Node
   focus: ->
     @container.focus()
 
+  getId: ->
+    return @container.id
+
   getWidth: ->
     return IMG_SIZE
 
@@ -77,29 +85,67 @@ class Node
 
   addEventHandlers: ->
     @container.addEventListener('focusin', Node.onFocusEvent)
-    @container.addEventListener('focusout', Node.onBlurEvent)
+    @container.addEventListener('mousedown', Node.onStartDragEvent)
+    @container.addEventListener('drag', Node.onDragEvent)
 
   @onFocusEvent: (e) ->
     node = new Node(this)
     mindmap.focusedItem = node
 
-  @onBlurEvent: (e) ->
+  @onStartDragEvent: (e) ->
+    links = [].slice.call(mindmap.canvas.getElementsByTagName('line'))
+    if links.length > 0
+      parentRegx = 'line_[a-z0-9]+_id'.replace('id', this.id)
+      childRegx  = 'line_id_[a-z0-9]'.replace('id', this.id)
+      mindmap.parentLink = links.filter((item) -> item.id.match(new RegExp(parentRegx)))
+      mindmap.childLink  = links.filter((item) -> item.id.match(new RegExp(childRegx)))
+      for link, i in mindmap.parentLink
+        mindmap.parentLink[i] = new Link(link)
+      for link, i in mindmap.childLink
+        mindmap.childLink[i] = new Link(link)
+
+  @onDragEvent: (e) ->
     node = new Node(this)
+    globalPoint = e.detail
+    localPoint = mindmap.getRelativeXY(globalPoint.clientX, globalPoint.clientY)
+    nodeX = localPoint.x - node.getWidth() // 2
+    nodeY = localPoint.y - node.getHeight() // 2
+    node.setPosition(nodeX, nodeY)
+    for link in mindmap.parentLink
+      link.setEndPoint(localPoint.x, localPoint.y)
+    for link in mindmap.childLink
+      link.setStartPoint(localPoint.x, localPoint.y)
 
 class Link
   line: null
 
-  constructor: ->
+  _createNewLink = (parentNode, childNode) ->
+    parentId = parentNode.getId()
+    childId  = childNode.getId()
     @line = document.createElementNS(svg, 'line')
+    @line.id = "line_#{parentId}_#{childId}"
     @line.className = 'MMLink'
     @setColor('black')
 
-  getPointA: ->
+  _createFromObj = (id) ->
+    @line = id
+
+  constructor: ->
+    switch arguments.length
+      when 2
+        [parentNode, childNode] = arguments
+        _createNewLink.call(@, parentNode, childNode)
+      when 1
+        objId = arguments[0]
+        _createFromObj.call(@, objId)
+
+
+  getStartPoint: ->
     x = parseInt(@line.getAttribute('x1'))
     y = parseInt(@line.getAttribute('y1'))
     return [x, y]
 
-  getPointB: ->
+  getEndPoint: ->
     x = parseInt(@line.getAttribute('x2'))
     y = parseInt(@line.getAttribute('y2'))
     return [x, y]
@@ -110,11 +156,20 @@ class Link
     @line.setAttribute('x2', x2)
     @line.setAttribute('y2', y2)
 
+  setStartPoint: (x, y) ->
+    @line.setAttribute('x1', x)
+    @line.setAttribute('y1', y)
+
+  setEndPoint: (x, y) ->
+    @line.setAttribute('x2', x)
+    @line.setAttribute('y2', y)
+
   setColor: (color) ->
     @line.style.stroke = color
 
 class Mindmap
   @focusedItem: null
+  @draggedItem: null
 
   canvas : null
   width  : null
@@ -124,6 +179,7 @@ class Mindmap
     @canvas = document.getElementById('draw_canvas')
     @width  = document.getElementById('draw_area').offsetWidth;
     @height = document.getElementById('draw_area').offsetHeight;
+    @enableNodeDrag()
 
   addNode: ->
     node = new Node()
@@ -131,7 +187,7 @@ class Mindmap
     return node
 
   addLink: (parent, child) ->
-    link = new Link()
+    link = new Link(parent, child)
     x1 = parent.getLeft() + parent.getWidth() // 2
     y1 = parent.getTop() + parent.getHeight() // 2
     x2 = child.getLeft() + child.getWidth() // 2
@@ -151,7 +207,6 @@ class Mindmap
   addChildNode: (parent, x, y) ->
     child = @addNode()
     child.setPosition(x, y)
-    child.setText('adsfsdfsdfsdfsdf')
     @addLink(parent, child)
     parent.focus()
     return child
@@ -162,10 +217,29 @@ class Mindmap
     point.y = absY
     return point.matrixTransform(@canvas.getScreenCTM().inverse())
 
-  removeNode: (node) ->
-
   removeAllNodes: ->
     @canvas.innerHTML = ''
+
+  enableNodeDrag: ->
+    @canvas.addEventListener('mousedown', Mindmap.onDragStartEvent)
+    @canvas.addEventListener('mousemove', Mindmap.onDragEvent)
+    @canvas.addEventListener('mouseup', Mindmap.onDropEvent)
+
+  @onDragStartEvent: (e) ->
+    target = e.target.parentNode
+    if target.tagName == 'g'
+      Mindmap.draggedItem = target
+
+  @onDragEvent: (e) ->
+    if Mindmap.draggedItem
+      event = new CustomEvent('drag', {'detail':{
+        'clientX': e.clientX,
+        'clientY': e.clientY
+      }})
+      Mindmap.draggedItem.dispatchEvent(event)
+
+  @onDropEvent: (e) ->
+    Mindmap.draggedItem = null
 
   getData: ->
     html = document.getElementById('draw_canvas').innerHTML  

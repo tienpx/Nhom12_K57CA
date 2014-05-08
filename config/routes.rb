@@ -12,7 +12,10 @@ NHOM12K57ca::Application.routes.draw do
   end
   match '/signup',  to: 'users#new', via: 'get'
   get '/static_pages/home', :to =>'static_pages#home'
-
+  get   '/login', :to => 'sessions#new', :as => :login
+  
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/failure', :to => 'sessions#failure'
   match "/signin", to: "sessions#new", via: 'get'
   match "/signin", to: "sessions#create", via: 'post'
   match '/signout', to: 'sessions#destroy',     via: 'delete'

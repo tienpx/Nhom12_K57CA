@@ -4,8 +4,9 @@ Feature: Drawing Interface
   I want a page that contains Drawing interface
 
   Scenario: Rename mindmap
-    Given I am on drawing_page
-    When I click button "title"
-    Then I should see "rename" input field
-    When I enter "newname" to "rename" input field
-    Then I should see "title" is "newname"
+    Given I am an authenticated user
+    And I am on the mindmap_index page
+    Then I should see field named "menu_bar"
+    Then I should see field named "tools_box"
+    Then I should see field named "library"
+    Then I should see field named "draw_area"

@@ -1,0 +1,119 @@
+Ruby on Rails coding standard
+{{toc}}
+
+1. Code style
+
+Use UTF-8. It’s 21 century, 8bit encodings dead now.
+Use 2 space indent, not tabs
+Use Unix-style line endings
+Keep lines not longer than 80 chars
+Remove trailing whitespace
+
+2. Development process
+
+Think
+Describe
+Write tests
+Implement & go green
+Rethink
+Refactor
+
+3. MVC
+
+Follow MVC conventions
+Do not ever mix logics: no model/view logic in controller, no view logic in model & etc.
+Follow “Fat model, skinny controllers” methodology
+If you have different data representation, use format aliases (e.g. different html views for same data: /users/:id.iphone)
+
+4. Controllers
+
+Keep it simple and clean
+Keep ApplicationController clean. Commonly it should be used only for global filters and per-request logic (e.g locale configuration and access control)
+Keep in mind that all ApplicationController filters will be executed in each request and optimize it to be ultra-fast
+Controllers should operate with abstract logic. Keep this logic simple and understandable without detailed review. E.g:
+# Disgusting
+  Account.transaction do
+    transfer = @sender.orders.new(:action => :transfer, :receiver => @receiver, :ammount)
+    
+    if @sender.assets >= amount
+      @sender.assets -= amount
+      @receiver.assets += amount
+    else
+      flash[:error] = "Balance not enough to transfer funds"
+      success = false
+    end
+    
+    if @sender.save! and @receiver.save! and transfer.save!
+      flash[:info] = "You have transferred #{ammount} to #{@receiver.last_name + "" + @receiver.first_name}"
+      success = true
+    else
+      errors = ...
+    end
+  end
+  
+  if !success
+    respond_to ...
+  else
+    respond_to ...
+  end
+# Much better, but not quite abstract
+  Account.transaction do
+    @sender.withdraw amount
+    @receiver.deposit amount
+  end
+
+  if @sender.errors? or @receiver.errors?
+    respond_to ...
+  else
+    respond_to ...
+  end
+# Best way
+  if @sender.transfer!(amount, :to => @receiver)
+    respond_to ...
+  else
+    respond_to 
+  end
+View interaction in controllers always should be placed in respond_to method or in responders (for Rails 3)
+Do not place any logic in respond_to method
+Prefer :except in filters. E.g.: before_filter :authorize!, :except => [:index] to be sure that new actions will be covered by filter by default
+Follow REST convention: Commonly one controller should only operate one resource.
+Follow REST convention naming. E.g.: UsersController should operate only users. Groups operations should be placed in GroupsController
+Follow HTTP methods conventions in REST actions: DELETE for destructive action, PUT for update, POST to create, GET to read
+Use nested resources when needed. E.g: map.resource :users {|user| user.resource :groups } instead of groups action in UsersController
+Avoid deep nesting where it’s not necessary. E.g: Not /places/:place_id/events/:event_id/users but /events/:event_id/users
+
+5. Models
+
+Keep it simple and clean
+Model, method and variable names should be obvious
+Do not use shortcuts and avoid non widely used abbreviation for model names. (e.g UsrHst or UserHist should be UserHistory)
+Don’t repeat yourself
+Don’t repeat rails. Zero custom code that duplicates rails built-in functionality
+If you use find with similar condition in more than once — use named_scope
+If you use same code in more than one model turn it into module/library
+Prefer XML Builder over to_xml overrides
+
+6. Views
+
+Views is for presentation. DO NOT EVER CHANGE STATE OF ANYTHING IN VIEW
+Keep views simple
+Move complex logic to helpers
+Move HTML markup generation to helpers
+Do not use finders in views
+DRY. Use partials, but keep in mind that partials can be really slow
+Keep HTML markup semantic an clean
+Do not inline any Javascript code. It should be unobtrusive
+
+7. Tests
+
+Follow Test Driven Development methodology: write tests, then code
+Keep tests simple and easy understandable
+Test everything what should be tested. If something can be broken: try to broke it by test
+Do not test rails built-in methods, test method usage
+Comments and documentation
+
+Respect other developers: use only English
+rdoc your friend, not enemy. Let application be self-documented
+More is better than less: it’s better to excess, than hold back
+
+Source: https://gist.github.com/y8/958791#ruby-on-rails-coding-standard

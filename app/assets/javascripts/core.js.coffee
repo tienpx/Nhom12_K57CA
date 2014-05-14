@@ -83,10 +83,12 @@ class Node
     return parseInt(@container.getBoundingClientRect().height, 10)
 
   getLeft: ->
-    return parseInt(@container.getAttribute('transform').match(/\d*\.?\d+/g)[0], 10)
+    coordinate = @container.getAttribute('transform')
+    return parseInt(coordinate.match(/\d*\.?\d+/g)[0], 10)
 
   getTop: ->
-    return parseInt(@container.getAttribute('transform').match(/\d*\.?\d+/g)[1], 10)
+    coordinate = @container.getAttribute('transform')
+    return parseInt(coordinate.match(/\d*\.?\d+/g)[1], 10)
 
   addEventHandlers: ->
     @container.addEventListener('focusin', Node.onFocusEvent)
@@ -98,12 +100,13 @@ class Node
     mindmap.focusedItem = node
 
   @onStartDragEvent: (e) ->
-    links = [].slice.call(mindmap.canvas.getElementsByTagName('line'))
-    if links.length > 0
-      parentRegx = 'line_[a-z0-9]+_id'.replace('id', this.id)
-      childRegx  = 'line_id_[a-z0-9]'.replace('id', this.id)
-      mindmap.parentLink = links.filter((item) -> item.id.match(new RegExp(parentRegx)))
-      mindmap.childLink  = links.filter((item) -> item.id.match(new RegExp(childRegx)))
+    linkArr = [].slice.call(mindmap.canvas.getElementsByTagName('line'))
+    if linkArr.length > 0
+      nodeId = this.id
+      parentRegx = new Regex("line_[a-z0-9]+_#{nodeId}")
+      childRegx  = new Regex("line_#{nodeId}_[a-z0-9]")
+      mindmap.parentLink = linkArr.filter((link) -> link.id.match(parentRegx))
+      mindmap.childLink  = linkArr.filter((link) -> link.id.match(childRegx))
       for link, i in mindmap.parentLink
         mindmap.parentLink[i] = new Link(link)
       for link, i in mindmap.childLink
@@ -186,8 +189,8 @@ class Mindmap
 
   constructor: ->
     @canvas = document.getElementById(CANVAS_ID)
-    @width  = document.getElementById(CANVAS_WRAP_ID).offsetWidth;
-    @height = document.getElementById(CANVAS_WRAP_ID).offsetHeight;
+    @width  = document.getElementById(CANVAS_WRAP_ID).offsetWidth
+    @height = document.getElementById(CANVAS_WRAP_ID).offsetHeight
     @enableNodeDrag()
 
   addNode: ->

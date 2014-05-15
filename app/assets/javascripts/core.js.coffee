@@ -10,7 +10,7 @@ class Node
 
   IMG_SIZE    = 50
   IMG_MARGIN  = 10
-  IMG_DEFAULT_URL = '../../assets/lib/animal/bird.png'
+  IMG_DEFAULT_URL = '../../../assets/images/vietnam.png'
   TEXT_HEIGHT = 4
   TEXT_DEFAULT = 'default'
 

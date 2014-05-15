@@ -4,9 +4,9 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3' group: :test
+gem 'sqlite3', group: :test
 
-gem 'pg' group: :production
+gem 'pg', group: :production
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -65,4 +65,6 @@ group :test do
    gem 'factory_girl_rails', '~> 4.2.1'
    gem 'selenium-webdriver'
 end
+
+gem 'rails_12factor', group: :production
 

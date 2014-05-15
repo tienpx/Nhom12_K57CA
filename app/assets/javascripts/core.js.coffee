@@ -103,8 +103,8 @@ class Node
     linkArr = [].slice.call(mindmap.canvas.getElementsByTagName('line'))
     if linkArr.length > 0
       nodeId = this.id
-      parentRegx = new Regex("line_[a-z0-9]+_#{nodeId}")
-      childRegx  = new Regex("line_#{nodeId}_[a-z0-9]")
+      parentRegx = new RegExp("line_[a-z0-9]+_#{nodeId}")
+      childRegx  = new RegExp("line_#{nodeId}_[a-z0-9]")
       mindmap.parentLink = linkArr.filter((link) -> link.id.match(parentRegx))
       mindmap.childLink  = linkArr.filter((link) -> link.id.match(childRegx))
       for link, i in mindmap.parentLink

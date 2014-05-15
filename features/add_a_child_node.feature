@@ -12,10 +12,8 @@ Feature: Add a child node
   Scenario: Create a child node from a root node
     Given I am an authenticated user
       And I am on the mindmap_index page
-    When I click on the root node
+    When I press "New"
+      And I click on the root node
       And I press "Add a child node"
-      And I click mouse on location(10,10)
-    Then I should see a new node
-      And I should see a link between the root node and the newly created node
-
-
+      And I click mouse on the mindmap at location(100,100)
+    Then I should see a new node added

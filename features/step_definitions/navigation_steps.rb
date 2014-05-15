@@ -1,13 +1,14 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'support', 'paths'))
 
 Given /^I am an authenticated user$/ do
-  user = FactoryGirl.create(:user)
-
-  visit '/'
-  click_link 'Sign in'
-  fill_in 'Email', with: user.email
-  fill_in 'Password', with: user.password
-  click_button 'Sign in'
+    visit '/'
+    if page.has_link?('Sign in')
+      user = FactoryGirl.create(:user)
+      click_link 'Sign in'
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'Sign in'
+  end
 end
 
 Given /^I am on (.+)$/ do |page_name|
@@ -18,8 +19,8 @@ When /^I go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
-When /^I press "([^\"]*)" (?:button)?$/ do |button|
-  print button
+When /^I press "([^\"]*)"$/ do |button|
+  click_button(button)
 end
 
 When /^I click "([^\"]*)"$/ do |link|
@@ -108,8 +109,4 @@ end
 
 Then /^page should have (.+) message "([^\"]*)"$/ do |type, text|
   page.has_css?("p.#{type}", :text => text, :visible => true)
-end
-
-When /^I click mouse on location\((\d+),(\d+)\)$/ do |x, y|
-  execute_script("document.getElementById('draw_canvas').elementFromPoint(#{x},#{y}).click()")
 end

@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 
 gem 'pg', group: :production
 
@@ -35,7 +34,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt', '~> 3.1.2'
 
 gem 'bootstrap-sass'
 gem 'bootstrap-form'
@@ -55,6 +54,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.14'
   gem "teaspoon"
   gem "phantomjs" , ">= 1.8.1.1"
+  gem 'sqlite3'
 end
 
 group :test do

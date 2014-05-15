@@ -44,6 +44,9 @@ gem 'bootstrap-form'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
+#Use Rubocop for static code analysis
+gem 'rubocop', :git => 'git://github.com/bbatsov/rubocop.git'
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 group :test, :development do

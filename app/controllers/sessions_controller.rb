@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.where(:email => params[:signin][:email]).first
+    @user = User.where(email: params[:signin][:email]).first
     if @user && @user.authenticate(params[:signin][:password])
       sign_in(@user)
       session[:@user_id] = @user.id
@@ -18,5 +18,4 @@ class SessionsController < ApplicationController
     sign_out
     redirect_to root_url
   end
-
 end

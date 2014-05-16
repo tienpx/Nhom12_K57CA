@@ -1,13 +1,12 @@
 class MindmapController < ApplicationController
-
-  before_filter :init_category_and_image_list
+  before_action :init_category_and_image_list
 
   def init_category_and_image_list
-    @categories = Dir.entries("app/assets/images/lib/").select{ |category|
-      category != "." && category != ".."
-    }
+    @categories = Dir.entries('app/assets/images/lib/').select do |category|
+      category != '.' && category != '..'
+    end
     @image_list = {}
-    for category in @categories
+    @categories.each do |category|
       @image_list[category] = Dir.glob("app/assets/images/lib/#{category}/*.*")
     end
     @current_category = @categories[0]
@@ -20,11 +19,10 @@ class MindmapController < ApplicationController
   end
 
   def load_lib_image
-    if @current_category != params[:category]
-      @current_category = params[:category]
-      respond_to do |format|
-        format.js
-      end
+    return unless @current_category == params[:category]
+    @current_category = params[:category]
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -33,5 +31,4 @@ class MindmapController < ApplicationController
 
   def save
   end
-
 end

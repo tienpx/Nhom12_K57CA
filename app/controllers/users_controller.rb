@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "You have signed up successfully"
+      flash[:success] = 'You have signed up successfully'
       sign_in(@user)
       redirect_to root_url
     else
@@ -36,18 +36,24 @@ class UsersController < ApplicationController
       params[:password_confirmation] = params[:password]
     end
 
-    if @user.update(params)
-      flash[:success] = "Your profile has been updated."
-      redirect_to @user
-    else
-      flash[:error] = "Your profile has not been updated."
-      render :action => "edit"
-    end
+    render :update_message
   end
 
   private
-  def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation, :email)
+
+  def update_message
+    params = user_params.dup
+    if @user.update(params)
+      flash[:success] = 'Your profile has been updated.'
+      redirect_to @user
+    else
+      flash[:error] = 'Your profile has not been updated.'
+      render action: 'edit'
+    end
   end
 
+  def user_params
+    params.require(:user).permit(:name, :password, :password_confirmation,
+                                 :email)
+  end
 end

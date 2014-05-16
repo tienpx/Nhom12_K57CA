@@ -1,0 +1,164 @@
+Inspecting 17 files
+..CCC.CC...C.C.CC
+
+Offenses:
+
+app/controllers/mindmaps_controller.rb:12:24: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      flash[:notice] = "Mindmap has been created."
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/mindmaps_controller.rb:15:23: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      flash[:alert] = "Mindmap has not been created."
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/mindmaps_controller.rb:16:14: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      render "new"
+             ^^^^^
+app/controllers/mindmaps_controller.rb:25:24: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      flash[:notice] = "Mindmap has been updated."
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/mindmaps_controller.rb:28:23: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      flash[:alert] = "Mindmap has not been updated."
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/mindmaps_controller.rb:29:22: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      render action: "edit"
+                     ^^^^^^
+app/controllers/mindmaps_controller.rb:33:1: C: Extra blank line detected.
+app/controllers/mindmaps_controller.rb:36:22: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    flash[:notice] = "Mindmap has been deleted."
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/mindmaps_controller.rb:40:3: C: Keep a blank line before and after private.
+  private
+  ^^^^^^^
+app/controllers/mindmaps_controller.rb:45:1: C: Extra blank line detected.
+app/controllers/mindmaps_controller.rb:46:1: C: Extra blank line detected.
+app/controllers/mindmaps_controller.rb:47:3: C: Keep a blank line before and after private.
+  private
+  ^^^^^^^
+app/controllers/mindmaps_controller.rb:52:3: C: Keep a blank line before and after private.
+  private
+  ^^^^^^^
+app/controllers/mindmaps_controller.rb:57:1: C: Extra blank line detected.
+app/controllers/mindmaps_controller.rb:57:1: C: Extra empty line detected at body end.
+app/controllers/mindmap_controller.rb:2:1: C: Extra empty line detected at body beginning.
+app/controllers/mindmap_controller.rb:3:3: C: Prefer before_action over before_filter.
+  before_filter :init_category_and_image_list
+  ^^^^^^^^^^^^^
+app/controllers/mindmap_controller.rb:6:31: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    @categories = Dir.entries("app/assets/images/lib/").select{ |category|
+                              ^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/mindmap_controller.rb:6:63: C: Avoid using {...} for multi-line blocks.
+    @categories = Dir.entries("app/assets/images/lib/").select{ |category|
+                                                              ^
+app/controllers/mindmap_controller.rb:7:19: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      category != "." && category != ".."
+                  ^^^
+app/controllers/mindmap_controller.rb:7:38: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      category != "." && category != ".."
+                                     ^^^^
+app/controllers/mindmap_controller.rb:10:5: C: Prefer each over for.
+    for category in @categories
+    ^^^
+app/controllers/mindmap_controller.rb:23:5: C: Use a guard clause instead of wrapping the code inside a conditional expression.
+    if @current_category != params[:category]
+    ^^
+app/controllers/mindmap_controller.rb:36:1: C: Extra empty line detected at body end.
+app/controllers/sessions_controller.rb:6:24: C: Use the new Ruby 1.9 hash syntax.
+    @user = User.where(:email => params[:signin][:email]).first
+                       ^^^^^^^^^
+app/controllers/sessions_controller.rb:21:1: C: Extra empty line detected at body end.
+app/controllers/users_controller.rb:13:25: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      flash[:success] = "You have signed up successfully"
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/users_controller.rb:29:3: C: Method has too many lines. [15/10]
+  def update
+  ^^^
+app/controllers/users_controller.rb:40:25: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      flash[:success] = "Your profile has been updated."
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/users_controller.rb:43:23: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      flash[:error] = "Your profile has not been updated."
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/users_controller.rb:44:14: C: Use the new Ruby 1.9 hash syntax.
+      render :action => "edit"
+             ^^^^^^^^^^
+app/controllers/users_controller.rb:44:25: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      render :action => "edit"
+                        ^^^^^^
+app/controllers/users_controller.rb:48:3: C: Keep a blank line before and after private.
+  private
+  ^^^^^^^
+app/controllers/users_controller.rb:50:81: C: Line is too long. [82/80]
+    params.require(:user).permit(:name, :password, :password_confirmation, :email)
+                                                                                ^^
+app/controllers/users_controller.rb:52:1: C: Extra empty line detected at body end.
+app/helpers/application_helper.rb:2:1: C: Tab detected.
+	 # Returns the full title on a per-page basis.
+^
+app/helpers/application_helper.rb:4:18: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    base_title = "Mind Map"
+                 ^^^^^^^^^^
+app/helpers/sessions_helper.rb:13:3: C: Use attr_writer to define trivial writer methods.
+  def current_user=(user)
+  ^^^
+app/helpers/sessions_helper.rb:28:4: C: Final newline missing.
+end
+   
+app/helpers/users_helper.rb:4:30: C: Do not use :: for method calls.
+    gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
+                             ^^
+app/helpers/users_helper.rb:7:52: C: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    image_tag(gravatar_url, alt: user.name, class: "gravatar")
+                                                   ^^^^^^^^^^
+app/helpers/users_helper.rb:9:1: C: Extra empty line detected at body end.
+app/models/mindmap.rb:3:35: C: Trailing whitespace detected.
+  validates :title, presence: true 
+                                  ^
+app/models/user.rb:2:1: C: Use 2 (not 1) spaces for indentation.
+	before_save { self.email = email.downcase }
+^
+app/models/user.rb:2:1: C: Tab detected.
+	before_save { self.email = email.downcase }
+^
+app/models/user.rb:3:1: C: Tab detected.
+	before_create :create_remember_token
+^
+app/models/user.rb:5:1: C: Tab detected.
+	has_secure_password
+^
+app/models/user.rb:7:1: C: Tab detected.
+	validates :name, presence: true 
+^
+app/models/user.rb:7:33: C: Trailing whitespace detected.
+	validates :name, presence: true 
+                                ^
+app/models/user.rb:8:1: C: Tab detected.
+	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+^
+app/models/user.rb:9:3: C: Inconsistent indentation detected.
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/user.rb:9:81: C: Line is too long. [89/80]
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
+                                                                                ^^^^^^^^^
+app/models/user.rb:10:3: C: Inconsistent indentation detected.
+  validates :password, presence: true
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/user.rb:12:3: C: Inconsistent indentation detected.
+  def User.new_remember_token
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/user.rb:12:7: C: Use self.new_remember_token instead of User.new_remember_token.
+  def User.new_remember_token
+      ^^^^
+app/models/user.rb:16:3: C: Inconsistent indentation detected.
+  def User.digest(token)
+  ^^^^^^^^^^^^^^^^^^^^^^
+app/models/user.rb:16:7: C: Use self.digest instead of User.digest.
+  def User.digest(token)
+      ^^^^
+app/models/user.rb:20:3: C: Keep a blank line before and after private.
+  private
+  ^^^^^^^
+app/models/user.rb:21:3: C: Inconsistent indentation detected.
+  def create_remember_token
+  ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+17 files inspected, 59 offenses detected

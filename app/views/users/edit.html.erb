@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% provide(:title, "Edit user") %>
+  </head>
+
+	<body>
+    <div class="center">
+    <h1>Update your profile</h1>
+
+    <%= form_for @user, :html => {:class => "form-horizontal center"} do |f| %>
+      <div class="form-group">
+        <p>
+         <%= f.label :name, "Username", class: "col-md-4 control-label" %>
+
+          <div class="col-md-4">
+            <%= f.text_field :name, placeholder: "Change your name", class: "form-control" %>
+          </div>
+        </p>
+      </div>
+
+      <div class="form-group">
+        <p>
+          <%= f.label :email, "Email", class: "col-md-4 control-label" %>
+
+          <div class="col-md-4">
+            <%= f.text_field :email, placeholder: "Change your email",class: "form-control" %>
+          </div> 
+        </p>
+      </div>
+      
+      <div class="form-group">
+        <p>
+          <%= f.label :password, "New password", class: "col-md-4 control-label" %>
+
+          <div class="col-md-4">
+            <%= f.password_field :password, placeholder: "Change your password", help: "Must be at least 6 character long", class: "form-control" %>
+          </div>
+        </p>
+      </div> 
+
+      </br>
+
+      <%= f.submit "Save change", class: " btn btn-primary" %>
+    <% end %>
+  </center>
+  </body>
+</html>
+

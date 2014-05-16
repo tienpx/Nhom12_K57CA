@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% provide(:title, @user.name)%>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10"><h1><%= link_to @user.name, user_path(@user) %></h1></div>
+      
+        <div class="col-sm-2">
+          <h1><%= gravatar_for @user %></h1>
+          <a href="http://gravatar.com/emails">change</a>
+        </div>
+      </div>
+
+      </br>
+      <p>List of mindmaps</p>
+        <ul id='mindmaps'>
+         <% @user.mindmaps.each do |mindmap| %>
+             <li>
+               #<%= mindmap.id %> -<%= link_to mindmap.title, [@user, mindmap] %>
+             </li>
+         <% end %>
+        </ul>
+
+      <div class="row">
+        <div class="col-sm-3"><!--left col-->
+              
+          <ul class="list-group">
+            <li class="list-group-item text-muted">Profile</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Name</strong></span> <%= link_to @user.name, user_path(@user) %></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Email</strong></span> <%= link_to @user.email, "#" %></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Setting</strong></span> <%= link_to "Edit", edit_user_path(@user) %></li>
+            
+          </ul>           
+          
+          <ul class="list-group">
+            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
+          </ul> 
+               
+          <div class="panel panel-default">
+            <div class="panel-heading">Social Media</div>
+            <div class="panel-body">
+                <i class="fa fa-facebook fa-2x">Facebook</i> 
+                </br>
+                <i class="fa fa-twitter fa-2x">Twitter</i> <i class="fa fa-pinterest fa-2x"></i>
+            </div>
+          </div>
+        </div><!--/col-3-->
+        <h2>My mindmap</h2>
+        <% link_to "New Mindmaps", new_user_mindmap_path(@user) %>
+        <hr>
+      </div><!--/row-->
+    </div>
+  </body>
+</html>

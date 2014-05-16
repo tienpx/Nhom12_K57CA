@@ -1,0 +1,59 @@
+<div class="center">
+  <%= form_for @user, :html => {:class => "form-horizontal center"} do |f| %>
+      <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %>
+              prohibited your account from being created:</h2>
+            <ul>
+              <% @user.errors.full_messages.each do |msg| %>
+                  <div class = "alert alert-danger">
+                  <%= msg %>
+                </div>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="form-group">
+        <p>
+          <%= f.label :name, "Username", class: "col-md-4 control-label" %>
+          <div class="col-md-4">
+            <%= f.text_field :name, placeholder: "Your name", class: "form-control" %>
+          </div>
+        </p>
+      </div>
+
+      <div class="form-group">
+        <p>
+          <%= f.label :email, "Email", class: "col-md-4 control-label" %>
+
+          <div class="col-md-4">
+            <%= f.text_field :email, placeholder: "example@anywhere.com",class: "form-control" %>
+          </div> 
+        </p>
+      </div>
+      
+      <div class="form-group">
+        <p>
+          <%= f.label :password, "Password", class: "col-md-4 control-label" %>
+
+          <div class="col-md-4">
+            <%= f.password_field :password, placeholder: "Your password", help: "Must be at least 6 character long", class: "form-control" %>
+          </div>
+        </p>
+      </div>
+
+      <div class="form-group">
+        <p>
+          <%= f.label :password_confirmation, "Password confirmation", class: "col-md-4 control-label" %>
+
+          <div class="col-md-4">
+            <%= f.password_field :password_confirmation, placeholder: "Confirm your passwod", class: "form-control" %>
+          </div>
+        </p>
+      </div>
+
+      </br>
+
+      <%= f.submit "Sign up", class: " btn btn-primary" %>
+  <% end %>
+</div> 

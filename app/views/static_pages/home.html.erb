@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <% provide(:title, 'Home') %>
+  </head>
+  <body>
+    <div class="container">
+      <% if signed_in? %>
+        <div class="jumbotron">   
+          <h1><%= gravatar_for current_user %></h1>
+          </br>
+          <h4>News feed</h4>
+          </br>
+          <div class="table-responsive">
+            <table class="table table-hover"> 
+              <tbody>
+                <tr>
+                  <td><i class="pull-right fa fa-edit"></i> Today, 1:00 - trangvt liked your post.</td>
+                </tr>
+                <tr>
+                  <td><i class="pull-right fa fa-edit"></i> Today, 12:23 - thutt liked and shared your post.</td>
+                </tr>
+                <tr>
+                  <td><i class="pull-right fa fa-edit"></i> Today, 12:20 - You posted a new minmap entry title "How can we complete this app?".</td>
+                </tr>
+                <tr>
+                  <td><i class="pull-right fa fa-edit"></i> Yesterday - longdh want to improve your mindmap name "abc".</td>
+                </tr>
+                <tr>
+                  <td><i class="pull-right fa fa-edit"></i> 2 Days Ago - tienpx accept your request to improve his mindmap name "xyz".</td>
+                </tr>
+                <tr>
+                  <td><i class="pull-right fa fa-edit"></i> 2 Days Ago - tronglvq liked your post.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% else %>
+        <div class="jumbotron">
+          <h1>Welcome to MindMap App!</h1>
+          <p>An optimized annotation tools, which we use both hemispheres to remember the world. </p>
+          <%= link_to "Sign up now", new_user_path, class: "btn btn-large btn-primary" %>
+        </div>
+     
+        <div class="row">
+          <div class="col-md-4">
+            <h2>Create</h2>
+            <p>The fast way to express your ideas via mindmap diagram.   </p>
+           <p><a class="btn btn-default" href= "https://github.com/tienpx/Nhom12_K57CA/wiki/How-to-create-a-mind-map" role="button">View details &raquo;</a></p>
+          </div>
+
+          <div class="col-md-4">
+            <h2>Share</h2>
+            <p>The easy way to share your mindmap to your friends and invite them to develop it.</p>
+            <p><a class="btn btn-default" href="https://github.com/tienpx/Nhom12_K57CA/wiki/How-to-share-your-mind-map-and-invite-your-friend-to-develop-it." role="button">View details &raquo;</a></p>
+         </div>
+
+          <div class="col-md-4">
+            <h2>Save</h2>
+            <p>The convenient way to save your mindmap in local devices as well as in web store.</p>
+            <p><a class="btn btn-default" href="https://github.com/tienpx/Nhom12_K57CA/wiki/How-to-save-your-mind-map-in-local-devices-and-web-store." role="button">View details &raquo;</a></p>
+          </div>
+        </div>
+      <% end %>
+    </div> <!-- /container -->
+  </body>
+</html>

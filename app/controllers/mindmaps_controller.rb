@@ -1,5 +1,5 @@
 class MindmapsController < ApplicationController
-   before_action :init_category_and_image_list
+  before_action :init_category_and_image_list
   before_action :set_user
   before_action :set_mindmap, only: [:show, :edit, :update, :destroy]
 
@@ -37,14 +37,14 @@ class MindmapsController < ApplicationController
   end
 
   def load_lib_image
-    return unless @current_category == params[:category]
+    return unless @current_category != params[:category]
     @current_category = params[:category]
     respond_to do |format|
       format.js
     end
   end
 
-    def init_category_and_image_list
+  def init_category_and_image_list
     @categories = Dir.entries('app/assets/images/lib/').select do |category|
       category != '.' && category != '..'
     end

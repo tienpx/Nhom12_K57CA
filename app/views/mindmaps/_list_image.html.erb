@@ -1,0 +1,5 @@
+<%= content_tag :ul, :id => @current_category, :class => 'list-group' do %>
+  <% @image_list[@current_category].each do |image| %>
+    <li class="list-group-item"><%= image_tag "lib/#{@current_category}/#{image.split('/').last}" %></li>
+  <% end %>
+<% end %>

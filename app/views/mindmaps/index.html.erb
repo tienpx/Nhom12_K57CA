@@ -7,24 +7,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Create mindmap</title>
+  <% provide(:title, "New mindmap") %>
 </head>
 
 <body>
+</br>
   <div id="tools_box">
-
+    <button type="button" class="btn btn-group btn-lg" onclick="MMTools.addChildNode()">Add a child node</button>
+    <button type="button" class="btn btn-group btn-lg" onclick="MMTools.editText()">Edit text</button>
   </div>
   <div id="draw_area">
     <svg id="draw_canvas"></svg>
   </div>
   <div id="library">
-    <button type="button" onclick="MMTools.new()">New</button>
-    <button type="button" class="btn btn-group btn-lg">
-      <span class="glyphicon glyphicon-saved"></span>
-    </button>
-    <button type="button" class="btn btn-group btn-lg">Load</button>
+    <div id="lib_header">
+      <%= form_tag({:action => 'load_lib_image'}, :id => 'select_category', :remote => true) do %>
+         <%= select_tag 'category', options_for_select(@categories) %>
+         <%= submit_tag 'load images' %>
+      <% end %>
+    </div>
+    <div id="lib">
+    </div>
   </div>
   <div id="menu_bar">
+    <button type="button" class="btn btn-group btn-lg" onclick="MMTools.new()">New</button>
+    <button type="button" class="btn btn-group btn-lg" onclick="MMTools.save()">Save</button>
+    <button type="button" class="btn btn-group btn-lg">Load</button>
   </div>
 </body>
 

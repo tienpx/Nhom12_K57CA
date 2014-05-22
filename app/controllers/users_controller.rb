@@ -36,13 +36,6 @@ class UsersController < ApplicationController
       params[:password_confirmation] = params[:password]
     end
 
-    render :update_message
-  end
-
-  private
-
-  def update_message
-    params = user_params.dup
     if @user.update(params)
       flash[:success] = 'Your profile has been updated.'
       redirect_to @user
@@ -52,8 +45,13 @@ class UsersController < ApplicationController
     end
   end
 
+  private
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation,
+                                 :email)
+  end
+end
+password, :password_confirmation,
                                  :email)
   end
 end

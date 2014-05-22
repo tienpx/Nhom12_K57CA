@@ -2,8 +2,18 @@ require 'spec_helper'
 
 feature 'image library' do
 
+    let!(:user) { FactoryGirl.create(:user) }
+  let!(:mindmap) { FactoryGirl.create(:mindmap, user: user) }
+
   before do
-    visit '/mindmap/index'
+    visit '/'
+    click_link "Sign in"
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign in'
+    click_link 'New'
+    fill_in "Title", with: "bbb"
+    click_button "Create Mindmap"
   end
 
   scenario 'should have load image button' do

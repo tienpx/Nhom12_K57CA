@@ -17,11 +17,12 @@ feature "Creating Mindmaps" do
     fill_in "Title", with: "bbb"
     click_button "Create Mindmap"
     
-    expect(page).to have_content("Mindmap has been created.")
+    expect(page).to have_content("Add a child node")
   end
 
   scenario "Creating a mindmap without valid attributes fails" do
     click_button "Create Mindmap"
     expect(page).to have_content("Title can't be blank")
   end
+end  end
 end

@@ -1,7 +1,11 @@
 NHOM12K57ca::Application.routes.draw do
-  get "mindmap/index", as: "mindmap_index"
+  get "mindmaps/index", as: "mindmaps_index"
   get "draw/index"
   get "users/new"
+  post "mindmaps/load_lib_image", format: :js
+  post "mindmaps/save"
+
+  get "mindmap/index", as: "mindmap_index"
   post "mindmap/load_lib_image", format: :js
   post "mindmap/save"
 

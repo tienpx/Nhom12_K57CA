@@ -1,4 +1,5 @@
 class MindmapsController < ApplicationController
+   before_action :init_category_and_image_list
   before_action :set_user
   before_action :set_mindmap, only: [:show, :edit, :update, :destroy]
 
@@ -9,7 +10,6 @@ class MindmapsController < ApplicationController
   def create
     @mindmap = @user.mindmaps.build(mindmap_params)
     if @mindmap.save
-      flash[:notice] = 'Mindmap has been created.'
       redirect_to user_mindmaps_path
     else
       flash[:alert] = 'Mindmap has not been created.'
@@ -36,14 +36,32 @@ class MindmapsController < ApplicationController
     redirect_to @user
   end
 
-  private
+  def load_lib_image
+    return unless @current_category == params[:category]
+    @current_category = params[:category]
+    respond_to do |format|
+      format.js
+    end
+  end
 
+    def init_category_and_image_list
+    @categories = Dir.entries('app/assets/images/lib/').select do |category|
+      category != '.' && category != '..'
+    end
+    @image_list = {}
+    @categories.each do |category|
+      @image_list[category] = Dir.glob("app/assets/images/lib/#{category}/*.*")
+    end
+    @current_category = @categories[0]
+  end
+
+  private
   def mindmap_params
     params.require(:mindmap).permit(:title)
   end
 
   def set_user
-    @user = User.find(params[:user_id])
+    @user = current_user
   end
 
   def set_mindmap

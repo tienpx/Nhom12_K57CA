@@ -30,4 +30,3 @@ feature "Signing in" do
     expect(page).to have_link('Sign out')
   end
 end
-d

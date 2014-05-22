@@ -65,7 +65,6 @@ group :test do
    gem 'factory_girl_rails', '~> 4.2.1'
    gem 'selenium-webdriver'
 end
-gem 'omniauth'
-gem 'omniauth-facebook', '1.4.0'
+
 gem 'rails_12factor', group: :production
 

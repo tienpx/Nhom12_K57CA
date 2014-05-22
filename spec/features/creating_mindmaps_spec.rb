@@ -24,5 +24,4 @@ feature "Creating Mindmaps" do
     click_button "Create Mindmap"
     expect(page).to have_content("Title can't be blank")
   end
-end  end
 end
